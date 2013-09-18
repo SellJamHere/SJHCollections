@@ -163,10 +163,10 @@
 		8224F85917E9B083006B9EBE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */,
 				8224F85B17E9B103006B9EBE /* SJHOrderedDictionary.h */,
-				8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */,
+				8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */,
 				8224F85D17E9B103006B9EBE /* SJHMutableOrderedDictionary.h */,
+				8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

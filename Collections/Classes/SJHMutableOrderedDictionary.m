@@ -17,6 +17,10 @@
 
 @implementation SJHMutableOrderedDictionary
 
++ (id)mutableOrderedDictionaryWithObjects:(NSArray *)objects andKeys:(NSArray *)keys{
+    return [[SJHMutableOrderedDictionary alloc] initWithObjects:objects forKeys:keys];
+}
+
 - (id)init{
     self = [super init];
     if (self){
@@ -54,8 +58,7 @@
 }
 
 //If aKey already exists in the dictionary anObject takes its place.
-- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey
-{
+- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey{
     if (![_dictionary objectForKey:aKey])
     {
         [_keys addObject:aKey];
@@ -63,25 +66,25 @@
     [_dictionary setObject:anObject forKey:aKey];
 }
 
-- (void)removeObjectForKey:(id)aKey
-{
+- (void)removeObjectForKey:(id)aKey{
     [_dictionary removeObjectForKey:aKey];
     [_keys removeObject:aKey];
 }
 
-- (NSUInteger)count
-{
+- (NSUInteger)count{
     return [_dictionary count];
 }
 
-- (id)objectForKey:(id)aKey
-{
+- (id)objectForKey:(id)aKey{
     return [_dictionary objectForKey:aKey];
 }
 
-- (NSEnumerator *)keyEnumerator
-{
+- (NSEnumerator *)keyEnumerator{
     return [_keys objectEnumerator];
+}
+
+- (NSArray *)allKeys{
+    return _keys;
 }
 
 @end
