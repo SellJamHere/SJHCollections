@@ -40,7 +40,7 @@
     return self;
 }
 
--(id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys{
+- (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys{
     self = [super init];
     if(self){
         NSMutableArray *tempKeys = [[NSMutableArray alloc] initWithCapacity:[keys count]];
