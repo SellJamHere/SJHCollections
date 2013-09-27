@@ -19,6 +19,7 @@
 		8224F85017E9B068006B9EBE /* CollectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F84F17E9B068006B9EBE /* CollectionsTests.m */; };
 		8224F85E17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */; };
 		8224F85F17E9B103006B9EBE /* SJHMutableOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */; };
+		8290074A17F548B40079B922 /* SJHListQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290074817F548B40079B922 /* SJHListQueue.m */; };
 		82D1E67B17F3B6E5009A2C19 /* SJHStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1E67A17F3B6E5009A2C19 /* SJHStack.m */; };
 		82D1E67D17F3BDEF009A2C19 /* SJHStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1E67C17F3BDEF009A2C19 /* SJHStackTests.m */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,9 @@
 		8224F85B17E9B103006B9EBE /* SJHOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHOrderedDictionary.h; path = Classes/SJHOrderedDictionary.h; sourceTree = "<group>"; };
 		8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHMutableOrderedDictionary.m; path = Classes/SJHMutableOrderedDictionary.m; sourceTree = "<group>"; };
 		8224F85D17E9B103006B9EBE /* SJHMutableOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHMutableOrderedDictionary.h; path = Classes/SJHMutableOrderedDictionary.h; sourceTree = "<group>"; };
+		8290074217F5446D0079B922 /* SJHCollectionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SJHCollectionProtocol.h; path = Classes/SJHCollectionProtocol.h; sourceTree = "<group>"; };
+		8290074817F548B40079B922 /* SJHListQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHListQueue.m; path = Classes/SJHListQueue.m; sourceTree = "<group>"; };
+		8290074917F548B40079B922 /* SJHListQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHListQueue.h; path = Classes/SJHListQueue.h; sourceTree = "<group>"; };
 		82D1E67917F3B6E5009A2C19 /* SJHStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHStack.h; path = Classes/SJHStack.h; sourceTree = "<group>"; };
 		82D1E67A17F3B6E5009A2C19 /* SJHStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHStack.m; path = Classes/SJHStack.m; sourceTree = "<group>"; };
 		82D1E67C17F3BDEF009A2C19 /* SJHStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHStackTests.m; sourceTree = "<group>"; };
@@ -169,10 +173,21 @@
 		8224F85917E9B083006B9EBE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8290074217F5446D0079B922 /* SJHCollectionProtocol.h */,
 				82D1E67517F3B448009A2C19 /* Stack */,
+				8290074317F547770079B922 /* Queue */,
 				82D1E67417F3B436009A2C19 /* OrderedDictionary */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		8290074317F547770079B922 /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				8290074917F548B40079B922 /* SJHListQueue.h */,
+				8290074817F548B40079B922 /* SJHListQueue.m */,
+			);
+			name = Queue;
 			sourceTree = "<group>";
 		};
 		82D1E67417F3B436009A2C19 /* OrderedDictionary */ = {
@@ -307,6 +322,7 @@
 				8224F83217E9B067006B9EBE /* main.m in Sources */,
 				8224F83917E9B067006B9EBE /* SJHAppDelegate.m in Sources */,
 				82D1E67B17F3B6E5009A2C19 /* SJHStack.m in Sources */,
+				8290074A17F548B40079B922 /* SJHListQueue.m in Sources */,
 				8224F85E17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */,
 				8224F85F17E9B103006B9EBE /* SJHMutableOrderedDictionary.m in Sources */,
 			);
