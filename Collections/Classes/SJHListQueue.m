@@ -7,22 +7,20 @@
 //
 
 /* Complexities
-//add         :
-//addAll      :
-//remove      :
-//clear       :
-//peek        :
-//isEmpty     :
-//size        :
+//add         : O(1)
+//addAll      : O(n)
+//remove      : O(1)
+//clear       : O(n)
+//peek        : O(1)
+//isEmpty     : O(1)
+//size        : O(1)
 //iterator    :
-//  hasNext   :
-//  next      :
-//  remove    :
-//toArray     :
-//newEmpty    :
-//shallowCopy :
-//toString    :
-//equals      :
+//  hasNext   : O(1)
+//  allObjects: O(n)
+//  nextObject: O(1)
+//toArray     : O(n)
+//toString    : O(n)
+//equals      : O(n)
 //hashCode    :
  */
 
@@ -92,8 +90,13 @@
 //Nodes are added to the rear
 - (BOOL)add:(id)object{
 
-    _rear.next = [[ListNode alloc] initWithValue:object next:nil];
-    _rear = _rear.next;
+    if (!_rear){
+        _rear = [[ListNode alloc] initWithValue:object next:nil];
+    }
+    else{
+        _rear.next = [[ListNode alloc] initWithValue:object next:nil];
+        _rear = _rear.next;
+    }
     
     if (!_front){
         _front = _rear;
@@ -132,7 +135,14 @@
 }
 
 - (void)clear{
-    for (ListNode *node in [self enumerator]) {
+    //don't use iterator, as list will be mutated
+    ListNode *node = _front;
+    ListNode *next = node.next;
+    
+    [node destroy];
+    while (next) {
+        node = next;
+        next = next.next;
         [node destroy];
     }
     
@@ -150,6 +160,17 @@
 - (BOOL)isEmpty{
     if (!_front){
         return YES;
+    }
+    return NO;
+}
+
+- (BOOL)contains:(id)object{
+    LinkedQueueEnumerator *enumerator = [[LinkedQueueEnumerator alloc] initWithQueue:self];
+    
+    for (ListNode *node in enumerator) {
+        if([node.value isEqual:object]){
+            return YES;
+        }
     }
     return NO;
 }
@@ -186,8 +207,13 @@
 
 //Inherited
 - (NSString *)description{
-    //TODO: Add string destription function
-    return @"";
+    NSMutableString *description = [[NSMutableString alloc] init];
+    
+    for (ListNode *node in [self enumerator]) {
+        [description appendFormat:@"%@ -> ", node];
+    }
+    
+    return [description copy];
 }
 
 - (BOOL)isEqual:(id)other {
@@ -219,7 +245,6 @@
     //TODO: Add hash function
     return 0;
 }
-
 
 @end
 
@@ -280,6 +305,10 @@
 //Invoking this method exhausts the enumerator’s collection so that subsequent invocations of nextObject return nil.
 - (NSArray *)allObjects{
     NSMutableArray *allObjects = [[NSMutableArray alloc] initWithCapacity:_remainingNodeCount];
+    
+    if (_queue.modCount != _expectedModCount){
+        [NSException raise:@"ConcurrentModificationException" format:@"LinkedQueueEnumerator.nextObject"];
+    }
     
     while ([self hasNext]){
         [allObjects addObject:[self nextObject]];

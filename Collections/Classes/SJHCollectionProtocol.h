@@ -19,6 +19,7 @@
 //Queries
 - (id)peak;
 - (BOOL)isEmpty;
+- (BOOL)contains:(id)object;
 - (NSInteger)count;
 
 //Misc
@@ -27,7 +28,7 @@
 - (id<SJHCollectionProtocol>)copy;
 
 //Inherited
-- (NSString *)description;
+//- (NSString *)description;
 - (BOOL)isEqual:(id)object;
 - (NSInteger)hash;
 
