@@ -13,6 +13,7 @@
 //clear       : O(n)
 //peek        : O(1)
 //isEmpty     : O(1)
+//contains    : O(n)
 //size        : O(1)
 //iterator    :
 //  hasNext   : O(1)
@@ -167,8 +168,8 @@
 - (BOOL)contains:(id)object{
     LinkedQueueEnumerator *enumerator = [[LinkedQueueEnumerator alloc] initWithQueue:self];
     
-    for (ListNode *node in enumerator) {
-        if([node.value isEqual:object]){
+    for (id value in enumerator) {
+        if([value isEqual:object]){
             return YES;
         }
     }

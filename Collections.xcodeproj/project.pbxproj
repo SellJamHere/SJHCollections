@@ -19,6 +19,8 @@
 		8224F85017E9B068006B9EBE /* CollectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F84F17E9B068006B9EBE /* CollectionsTests.m */; };
 		8224F85E17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */; };
 		8224F85F17E9B103006B9EBE /* SJHMutableOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */; };
+		823B5AC917FC853400292186 /* SJHOrderedDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */; };
+		823B5ACB17FCD23600292186 /* SJHCollectionProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823B5ACA17FCD23600292186 /* SJHCollectionProtocolTests.m */; };
 		8290074A17F548B40079B922 /* SJHListQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290074817F548B40079B922 /* SJHListQueue.m */; };
 		8290074C17F61E8D0079B922 /* SJHListQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290074B17F61E8D0079B922 /* SJHListQueueTests.m */; };
 		8290075017F659F30079B922 /* SJHListQueueDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290074F17F659F30079B922 /* SJHListQueueDriver.m */; };
@@ -60,6 +62,8 @@
 		8224F85B17E9B103006B9EBE /* SJHOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHOrderedDictionary.h; path = Classes/SJHOrderedDictionary.h; sourceTree = "<group>"; };
 		8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHMutableOrderedDictionary.m; path = Classes/SJHMutableOrderedDictionary.m; sourceTree = "<group>"; };
 		8224F85D17E9B103006B9EBE /* SJHMutableOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHMutableOrderedDictionary.h; path = Classes/SJHMutableOrderedDictionary.h; sourceTree = "<group>"; };
+		823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHOrderedDictionaryTests.m; sourceTree = "<group>"; };
+		823B5ACA17FCD23600292186 /* SJHCollectionProtocolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHCollectionProtocolTests.m; sourceTree = "<group>"; };
 		8290074217F5446D0079B922 /* SJHCollectionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SJHCollectionProtocol.h; path = Classes/SJHCollectionProtocol.h; sourceTree = "<group>"; };
 		8290074817F548B40079B922 /* SJHListQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHListQueue.m; path = Classes/SJHListQueue.m; sourceTree = "<group>"; };
 		8290074917F548B40079B922 /* SJHListQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHListQueue.h; path = Classes/SJHListQueue.h; sourceTree = "<group>"; };
@@ -161,7 +165,9 @@
 			children = (
 				8224F84E17E9B068006B9EBE /* CollectionsTests.h */,
 				8224F84F17E9B068006B9EBE /* CollectionsTests.m */,
+				823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */,
 				82D1E67C17F3BDEF009A2C19 /* SJHStackTests.m */,
+				823B5ACA17FCD23600292186 /* SJHCollectionProtocolTests.m */,
 				8290074B17F61E8D0079B922 /* SJHListQueueTests.m */,
 				8224F84917E9B068006B9EBE /* Supporting Files */,
 			);
@@ -350,6 +356,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				82D1E67D17F3BDEF009A2C19 /* SJHStackTests.m in Sources */,
+				823B5AC917FC853400292186 /* SJHOrderedDictionaryTests.m in Sources */,
+				823B5ACB17FCD23600292186 /* SJHCollectionProtocolTests.m in Sources */,
 				8290074C17F61E8D0079B922 /* SJHListQueueTests.m in Sources */,
 				8224F85017E9B068006B9EBE /* CollectionsTests.m in Sources */,
 			);
