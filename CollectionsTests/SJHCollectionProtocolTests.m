@@ -56,20 +56,10 @@ static NSInteger kTestSize = 1000;
 
 - (void)add:(id<SJHCollectionProtocol>)collection{
     
-    [collection add:@"a"];
-    STAssertTrue([[collection toArray] isEqualToArray:[self makeStringArray:@"a"]], @"Add failed");
-    
-    [collection add:@"b"];
-    STAssertTrue([[collection toArray] isEqualToArray:[self makeStringArray:@"ab"]], @"Add failed");
-    
-    [collection add:@"c"];
-    STAssertTrue([[collection toArray] isEqualToArray:[self makeStringArray:@"abc"]], @"Add failed");
-    
-    [collection add:@"d"];
-    STAssertTrue([[collection toArray] isEqualToArray:[self makeStringArray:@"abcd"]], @"Add failed");
-    
-    [collection add:@"e"];
-    STAssertTrue([[collection toArray] isEqualToArray:[self makeStringArray:@"abcde"]], @"Add failed");
+    for (id object in _standardTestData) {
+        [collection add:object];
+        STAssertTrue([collection contains:object], @"Add failed: Object not contained");
+    }
     
     //next should fail on unstarted iterator after add
     [collection clear];
@@ -95,7 +85,7 @@ static NSInteger kTestSize = 1000;
     [_collection addAll:_standardTestData];
     
     for (id object in _standardTestData) {
-        STAssertTrue([_collection contains:object], @"Contains failed");
+        STAssertTrue([_collection contains:object], @"AddAll failed. Object not contained");
     }
 }
 
@@ -103,6 +93,10 @@ static NSInteger kTestSize = 1000;
 //- (void)test_remove{}
 
 - (void)test_clear{
+    
+}
+
+- (void)clear:(id<SJHCollectionProtocol>)collection{
     
 }
 

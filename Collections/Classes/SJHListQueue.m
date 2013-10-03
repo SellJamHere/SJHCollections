@@ -126,6 +126,10 @@
 //Nodes are removed from the front
 - (id)remove{
     
+    if(_objectCount == 0){
+        return nil;
+    }
+    
     ListNode *node = _front;
     _front = _front.next;
     
@@ -214,7 +218,7 @@
         [description appendFormat:@"%@ -> ", node];
     }
     
-    return [description copy];
+    return [description substringToIndex:[description length] - 3];
 }
 
 - (BOOL)isEqual:(id)other {
