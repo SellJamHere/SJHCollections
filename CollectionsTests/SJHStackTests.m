@@ -102,11 +102,11 @@
     }
 }
 
-- (void)test_peak{
+- (void)test_peek{
     SJHStack *stack = [[SJHStack alloc] initWithArray:_testValues];
     
     for (NSInteger i = [_testValues count] - 1; i >= 0; i--) {
-        STAssertTrue([stack peak] == [NSNumber numberWithInteger:i], [NSString stringWithFormat:@"Stack peak should be %ld. However, value is %ld", i, [stack count]]);
+        STAssertTrue([stack peek] == [NSNumber numberWithInteger:i], [NSString stringWithFormat:@"Stack peak should be %ld. However, value is %ld", i, [stack count]]);
         [stack pop];
     }
 }

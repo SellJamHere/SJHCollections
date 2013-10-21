@@ -59,7 +59,7 @@
     
 }
 
-- (id)peak{
+- (id)peek{
     return [_array lastObject];
 }
 

@@ -21,6 +21,6 @@
 
 - (void)push:(id)object;
 - (id)pop;
-- (id)peak;
+- (id)peek;
 
 @end
