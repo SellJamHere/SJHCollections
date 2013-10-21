@@ -1,6 +1,6 @@
 # SJHCollections
 
-SJHCollections is a set of high level collections based on the NSArray and NSDictionary classes. These classes aren't absolutely necessary, as they can be implemented in-code, but, while they aren't optimized, I've found these classes reduce complexity in most simple cases. 
+SJHCollections is a set of high level collections subclassing NSArray and NSDictionary. These classes aren't absolutely necessary, as they can be implemented in-code. However, I've found these classes reduce complexity in most pre-optimization cases.
 
 ## SJHOrderedDictionary
 
