@@ -1,23 +1,23 @@
 //
-//  SJHStack.m
+//  SJHQueue.m
 //  Collections
 //
-//  Created by James Heller on 9/25/13.
+//  Created by James Heller on 10/19/13.
 //  Copyright (c) 2013 SellJamHere. All rights reserved.
 //
 
-#import "SJHStack.h"
+#import "SJHQueue.h"
 
-@interface SJHStack ()
+@interface SJHQueue ()
 
 @property (strong, nonatomic) NSMutableArray *array;
 
 @end
 
-@implementation SJHStack
+@implementation SJHQueue
 
-+ (id)stackWithObjects:(NSArray *)array{
-    return [[SJHStack alloc] initWithArray:array];
++ (id)queueWithObjects:(NSArray *)array{
+    return [[SJHQueue alloc] initWithArray:array];
 }
 
 - (id)init{
@@ -40,7 +40,6 @@
     self = [super init];
     if (self){
         _array = [[NSMutableArray alloc] initWithCapacity:[array count]];
-        
         for (id object in array) {
             [_array addObject:object];
         }
@@ -48,19 +47,18 @@
     return self;
 }
 
-- (void)push:(id)object{
+- (void)add:(id)object{
     [_array addObject:object];
 }
 
-- (id)pop{
-    id object = [_array lastObject];
-    [_array removeLastObject];
+- (id)remove{
+    id object = [_array objectAtIndex:0];
+    [_array removeObjectAtIndex:0];
     return object;
-    
 }
 
-- (id)peak{
-    return [_array lastObject];
+- (id)peek{
+    return [_array objectAtIndex:0];
 }
 
 #pragma mark - NSArray Overrides
@@ -76,27 +74,27 @@
 
 //Always inserts to rear
 - (void)insertObject:(id)anObject atIndex:(NSUInteger)index{
-//    [self push:anObject];
-    [NSException raise:@"Stack Insert" format:@"Cannot insert object at index"];
+    //    [self push:anObject];
+    [NSException raise:@"Queue Insert" format:@"Cannot insert object at index"];
 }
 
 //Always removes from rear
 - (void)removeObjectAtIndex:(NSUInteger)index{
-//    [self pop];
-    [NSException raise:@"Stack Remove" format:@"Cannot remove object at index"];
+    //    [self pop];
+    [NSException raise:@"Queue Remove" format:@"Cannot remove object at index"];
 }
 
 //Same functionality as push
 - (void)addObject:(id)anObject{
-    [self push:anObject];
+    [self add:anObject];
 }
 
 - (void)removeLastObject{
-    [NSException raise:@"Stack Remove" format:@"Use pop"];
+    [NSException raise:@"Queue Remove" format:@"Use remove"];
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject{
-    [NSException raise:@"Stack Replace" format:@"Cannot replace an object in a stack"];
+    [NSException raise:@"Queue Replace" format:@"Cannot replace an object in a queue"];
 }
 
 @end

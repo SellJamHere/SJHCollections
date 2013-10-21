@@ -8,27 +8,24 @@ SJHOrderedDictionary (and SJHMutableOrderedDictionary) is an NSDictionary (or NS
 
 ## SJHStack
 
-SJHStack is mutable. Implementation is a little wonky, as it subclasses NSArray, throwing exceptions in methods ill fit for a stack. A more perfect solution would be to create a new class implementing the necessary delegates.
+SJHStack is mutable. Implementation is a little wonky, as it subclasses NSArray, throwing exceptions in methods ill fit for a stack.
 
-## SJHCollectionProtocol
+## SJHQueue
 
-SJHCollectionProtocol provies and interface for general datastructure operations.
-
-### SJHListQueue
-
-SJHListQueue is a mutable linked-list based FIFO queue. New items are added to the rear, and removed from the front, allowing for a singly linked list.
+SJHQueue is mutable. Implementation is much like SJHStack, where it throws exceptions for methods ill fitting of a queue.
 
 # CollectionsTests
 
-Unit tests for collections. Collections conforming to SJHCollectionProtocol run a generic test in SJHCollectionProtocolTests. Specific tests for a datastructure must be written in supporting test files.
+The CollectionsTests.h header file contains kTestSize, used to determine the number of integers stored during each test.
 
-## SJHCollectionProtocolTests
+## SJHOrderedDictionaryTests
 
-Supports generic testing of structure methods. As different datastructures require different forms data insertion and removal, certain methods should also be tested in seperate test files. For example, add is tested, but only for data containment and concurrent iterator modifications.
+Tests both SJHOrderedDictionary and SJHMutableOrderedDictionary.
 
-The following methods should be tested seperately:
-* add
-* remove
-* toArray
-* equals
+## SJHStackTests
 
+Tests SJHStack.
+
+## SJHQueueTests
+
+Tests SJHQueue.

@@ -16,14 +16,11 @@
 		8224F84417E9B068006B9EBE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8224F84317E9B068006B9EBE /* SenTestingKit.framework */; };
 		8224F84517E9B068006B9EBE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8224F82517E9B067006B9EBE /* Cocoa.framework */; };
 		8224F84D17E9B068006B9EBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8224F84B17E9B068006B9EBE /* InfoPlist.strings */; };
-		8224F85017E9B068006B9EBE /* CollectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F84F17E9B068006B9EBE /* CollectionsTests.m */; };
 		8224F85E17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */; };
 		8224F85F17E9B103006B9EBE /* SJHMutableOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */; };
 		823B5AC917FC853400292186 /* SJHOrderedDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */; };
-		823B5ACB17FCD23600292186 /* SJHCollectionProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823B5ACA17FCD23600292186 /* SJHCollectionProtocolTests.m */; };
-		8290074A17F548B40079B922 /* SJHListQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290074817F548B40079B922 /* SJHListQueue.m */; };
-		8290074C17F61E8D0079B922 /* SJHListQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290074B17F61E8D0079B922 /* SJHListQueueTests.m */; };
-		8290075017F659F30079B922 /* SJHListQueueDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290074F17F659F30079B922 /* SJHListQueueDriver.m */; };
+		82974DB5181313D3007422E4 /* SJHQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 82974DB4181313D3007422E4 /* SJHQueue.m */; };
+		82AAB543181324E4004DADF1 /* SJHQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AAB542181324E4004DADF1 /* SJHQueueTests.m */; };
 		82D1E67B17F3B6E5009A2C19 /* SJHStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1E67A17F3B6E5009A2C19 /* SJHStack.m */; };
 		82D1E67D17F3BDEF009A2C19 /* SJHStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1E67C17F3BDEF009A2C19 /* SJHStackTests.m */; };
 /* End PBXBuildFile section */
@@ -57,19 +54,14 @@
 		8224F84A17E9B068006B9EBE /* CollectionsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollectionsTests-Info.plist"; sourceTree = "<group>"; };
 		8224F84C17E9B068006B9EBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8224F84E17E9B068006B9EBE /* CollectionsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionsTests.h; sourceTree = "<group>"; };
-		8224F84F17E9B068006B9EBE /* CollectionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionsTests.m; sourceTree = "<group>"; };
 		8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHOrderedDictionary.m; path = Classes/SJHOrderedDictionary.m; sourceTree = "<group>"; };
 		8224F85B17E9B103006B9EBE /* SJHOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHOrderedDictionary.h; path = Classes/SJHOrderedDictionary.h; sourceTree = "<group>"; };
 		8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHMutableOrderedDictionary.m; path = Classes/SJHMutableOrderedDictionary.m; sourceTree = "<group>"; };
 		8224F85D17E9B103006B9EBE /* SJHMutableOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHMutableOrderedDictionary.h; path = Classes/SJHMutableOrderedDictionary.h; sourceTree = "<group>"; };
 		823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHOrderedDictionaryTests.m; sourceTree = "<group>"; };
-		823B5ACA17FCD23600292186 /* SJHCollectionProtocolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHCollectionProtocolTests.m; sourceTree = "<group>"; };
-		8290074217F5446D0079B922 /* SJHCollectionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SJHCollectionProtocol.h; path = Classes/SJHCollectionProtocol.h; sourceTree = "<group>"; };
-		8290074817F548B40079B922 /* SJHListQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHListQueue.m; path = Classes/SJHListQueue.m; sourceTree = "<group>"; };
-		8290074917F548B40079B922 /* SJHListQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHListQueue.h; path = Classes/SJHListQueue.h; sourceTree = "<group>"; };
-		8290074B17F61E8D0079B922 /* SJHListQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHListQueueTests.m; sourceTree = "<group>"; };
-		8290074E17F659F30079B922 /* SJHListQueueDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHListQueueDriver.h; path = Drivers/SJHListQueueDriver.h; sourceTree = "<group>"; };
-		8290074F17F659F30079B922 /* SJHListQueueDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHListQueueDriver.m; path = Drivers/SJHListQueueDriver.m; sourceTree = "<group>"; };
+		82974DB3181313D3007422E4 /* SJHQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHQueue.h; path = Classes/SJHQueue.h; sourceTree = "<group>"; };
+		82974DB4181313D3007422E4 /* SJHQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHQueue.m; path = Classes/SJHQueue.m; sourceTree = "<group>"; };
+		82AAB542181324E4004DADF1 /* SJHQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHQueueTests.m; sourceTree = "<group>"; };
 		82D1E67917F3B6E5009A2C19 /* SJHStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHStack.h; path = Classes/SJHStack.h; sourceTree = "<group>"; };
 		82D1E67A17F3B6E5009A2C19 /* SJHStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHStack.m; path = Classes/SJHStack.m; sourceTree = "<group>"; };
 		82D1E67C17F3BDEF009A2C19 /* SJHStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHStackTests.m; sourceTree = "<group>"; };
@@ -164,11 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				8224F84E17E9B068006B9EBE /* CollectionsTests.h */,
-				8224F84F17E9B068006B9EBE /* CollectionsTests.m */,
 				823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */,
 				82D1E67C17F3BDEF009A2C19 /* SJHStackTests.m */,
-				823B5ACA17FCD23600292186 /* SJHCollectionProtocolTests.m */,
-				8290074B17F61E8D0079B922 /* SJHListQueueTests.m */,
+				82AAB542181324E4004DADF1 /* SJHQueueTests.m */,
 				8224F84917E9B068006B9EBE /* Supporting Files */,
 			);
 			path = CollectionsTests;
@@ -186,7 +176,6 @@
 		8224F85917E9B083006B9EBE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8290074217F5446D0079B922 /* SJHCollectionProtocol.h */,
 				82D1E67517F3B448009A2C19 /* Stack */,
 				8290074317F547770079B922 /* Queue */,
 				82D1E67417F3B436009A2C19 /* OrderedDictionary */,
@@ -197,8 +186,8 @@
 		8290074317F547770079B922 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
-				8290074917F548B40079B922 /* SJHListQueue.h */,
-				8290074817F548B40079B922 /* SJHListQueue.m */,
+				82974DB3181313D3007422E4 /* SJHQueue.h */,
+				82974DB4181313D3007422E4 /* SJHQueue.m */,
 			);
 			name = Queue;
 			sourceTree = "<group>";
@@ -206,8 +195,6 @@
 		8290074D17F659D20079B922 /* Drivers */ = {
 			isa = PBXGroup;
 			children = (
-				8290074E17F659F30079B922 /* SJHListQueueDriver.h */,
-				8290074F17F659F30079B922 /* SJHListQueueDriver.m */,
 			);
 			name = Drivers;
 			sourceTree = "<group>";
@@ -343,11 +330,10 @@
 			files = (
 				8224F83217E9B067006B9EBE /* main.m in Sources */,
 				8224F83917E9B067006B9EBE /* SJHAppDelegate.m in Sources */,
-				8290075017F659F30079B922 /* SJHListQueueDriver.m in Sources */,
 				82D1E67B17F3B6E5009A2C19 /* SJHStack.m in Sources */,
-				8290074A17F548B40079B922 /* SJHListQueue.m in Sources */,
 				8224F85E17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */,
 				8224F85F17E9B103006B9EBE /* SJHMutableOrderedDictionary.m in Sources */,
+				82974DB5181313D3007422E4 /* SJHQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,11 +341,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82AAB543181324E4004DADF1 /* SJHQueueTests.m in Sources */,
 				82D1E67D17F3BDEF009A2C19 /* SJHStackTests.m in Sources */,
 				823B5AC917FC853400292186 /* SJHOrderedDictionaryTests.m in Sources */,
-				823B5ACB17FCD23600292186 /* SJHCollectionProtocolTests.m in Sources */,
-				8290074C17F61E8D0079B922 /* SJHListQueueTests.m in Sources */,
-				8224F85017E9B068006B9EBE /* CollectionsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

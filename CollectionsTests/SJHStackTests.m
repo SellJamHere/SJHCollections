@@ -8,14 +8,16 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "SJHStack.h"
+#import "CollectionsTests.h"
 
-static NSInteger kTestSize = 1000;
+#import "SJHStack.h"
 
 @interface SJHStackTests : SenTestCase
 
 @property (strong, nonatomic) NSMutableArray *testValues;
 
+//reverseTestValues is needed because stack pushes and pops to rear
+@property (strong, nonatomic) NSMutableArray *reverseTestValues;
 @end
 
 @implementation SJHStackTests
@@ -24,11 +26,17 @@ static NSInteger kTestSize = 1000;
 {
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
-    _testValues = [[NSMutableArray alloc] init];
+    _testValues = [[NSMutableArray alloc] initWithCapacity:kTestSize];
+    _reverseTestValues = [[NSMutableArray alloc] initWithCapacity:kTestSize];
     
     for (NSInteger i = 0; i < kTestSize; i++) {
         [_testValues addObject:[NSNumber numberWithInteger:i]];
     }
+    
+    for (id value in [_testValues reverseObjectEnumerator]) {
+        [_reverseTestValues addObject:value];
+    }
+    
 }
 
 - (void)tearDown
@@ -53,7 +61,7 @@ static NSInteger kTestSize = 1000;
     
     SJHStack *stack = [[SJHStack alloc] initWithArray:_testValues];
 
-    for (NSInteger i = 0; i < [_testValues count]; i++) {
+    for (NSInteger i = [_testValues count] - 1; i >= 0 ; i--) {
         NSInteger value = [[stack pop] integerValue];
         STAssertTrue(value == i, [NSString stringWithFormat:@"Expected %ld, recieved %ld", (long)i, value]);
     }
@@ -64,7 +72,7 @@ static NSInteger kTestSize = 1000;
 - (void)test_stackWithObjects{
     SJHStack *stack = [SJHStack stackWithObjects:_testValues];
     
-    for (NSInteger i = 0; i < [_testValues count]; i++) {
+    for (NSInteger i = [_testValues count] - 1; i >= 0 ; i--) {
         NSInteger value = [[stack pop] integerValue];
         STAssertTrue(value == i, [NSString stringWithFormat:@"Expected %ld, recieved %ld", (long)i, value]);
     }
@@ -87,7 +95,7 @@ static NSInteger kTestSize = 1000;
 - (void)test_pop{
     SJHStack *stack = [[SJHStack alloc] initWithArray:_testValues];
     
-    for (NSInteger i = 0; i < [_testValues count]; i++) {
+    for (NSInteger i = [_testValues count] - 1; i >= 0 ; i--) {
         NSInteger value = [[stack pop] integerValue];
         
         STAssertTrue(value == i, [NSString stringWithFormat:@"Stack pop should be %ld. However, value is %ld", value, i]);
@@ -95,22 +103,20 @@ static NSInteger kTestSize = 1000;
 }
 
 - (void)test_peak{
-    SJHStack *stack = [[SJHStack alloc] init];
+    SJHStack *stack = [[SJHStack alloc] initWithArray:_testValues];
     
-    NSInteger i;
-    for (i = 0; i < kTestSize; i++) {
-        [stack push:[NSNumber numberWithInteger:i]];
-        
+    for (NSInteger i = [_testValues count] - 1; i >= 0; i--) {
         STAssertTrue([stack peak] == [NSNumber numberWithInteger:i], [NSString stringWithFormat:@"Stack peak should be %ld. However, value is %ld", i, [stack count]]);
+        [stack pop];
     }
 }
 
 - (void)test_objectAtIndex{
     SJHStack *stack = [[SJHStack alloc] initWithArray:_testValues];
     
-    NSInteger index = 123;
+    NSInteger index = arc4random_uniform((uint)kTestSize);
     
-    STAssertTrue([[stack objectAtIndex:index] integerValue] == index, @"Expected 74, received %ld", [stack objectAtIndex:index]);
+    STAssertTrue([[stack objectAtIndex:index] integerValue] == index, @"Expected %ld, received %ld", index, [stack objectAtIndex:index]);
 }
 
 - (void)test_count{

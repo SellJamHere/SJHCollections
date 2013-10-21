@@ -8,6 +8,4 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface CollectionsTests : SenTestCase
-
-@end
+#define kTestSize 10000000

@@ -8,6 +8,8 @@
 
 #import "SJHMutableOrderedDictionary.h"
 
+#import "SJHOrderedDictionary.h"
+
 @interface SJHMutableOrderedDictionary ()
 
 @property (strong, nonatomic) NSMutableArray *keys;
@@ -85,6 +87,18 @@
 
 - (NSArray *)allKeys{
     return _keys;
+}
+
+- (id)mutableCopyWithZone:(NSZone *)zone{
+    SJHMutableOrderedDictionary *copy = [[[self class] alloc] init];
+    
+    if (copy){
+        for (id key in _keys) {
+            [copy setObject:[_dictionary objectForKey:key] forKey:key];
+        }
+    }
+    
+    return copy;
 }
 
 @end

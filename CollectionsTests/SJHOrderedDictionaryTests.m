@@ -8,6 +8,8 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+#import "CollectionsTests.h"
+
 #import "SJHOrderedDictionary.h"
 #import "SJHMutableOrderedDictionary.h"
 

@@ -46,4 +46,11 @@
     return [_keys objectEnumerator];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    SJHOrderedDictionary *copy = [[[self class] alloc] initWithObjects:[_dictionary allValues] forKeys:_keys];
+    
+    return copy;
+}
+
 @end

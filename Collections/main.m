@@ -8,13 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "SJHListQueueDriver.h"
-
 int main(int argc, char *argv[])
 {
     return NSApplicationMain(argc, (const char **)argv);
-    
-//    [[[SJHListQueueDriver alloc] init] run];
     
     return 0;
 }
