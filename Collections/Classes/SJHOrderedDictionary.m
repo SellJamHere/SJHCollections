@@ -18,7 +18,12 @@
 @implementation SJHOrderedDictionary
 
 #pragma mark Creating a Dictionary
-+ (id)mutableOrderedDictionaryWithObjects:(NSArray *)objects andKeys:(NSArray *)keys{
+
++(id)dictionaryWithCapacity:(NSUInteger)numItems{
+    return [[self alloc] initWithCapacity:numItems];
+}
+
++ (id)dictionaryWithObjects:(NSArray *)objects forKeys:(NSArray *)keys{
     return [[SJHOrderedDictionary alloc] initWithObjects:objects forKeys:keys];
 }
 
@@ -103,6 +108,11 @@
 - (void)removeObjectForKey:(id)aKey{
     [_dictionary removeObjectForKey:aKey];
     [_keys removeObject:aKey];
+}
+
+- (void)removeAllObjects{
+    [_keys removeAllObjects];
+    [_dictionary removeAllObjects];
 }
 
 #pragma mark Count
