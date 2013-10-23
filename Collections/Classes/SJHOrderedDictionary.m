@@ -17,9 +17,12 @@
 
 @implementation SJHOrderedDictionary
 
-#pragma mark Creating a Dictionary
+#pragma mark Creating
++ (id)dictionary{
+    return [[self alloc] init];
+}
 
-+(id)dictionaryWithCapacity:(NSUInteger)numItems{
++ (id)dictionaryWithCapacity:(NSUInteger)numItems{
     return [[self alloc] initWithCapacity:numItems];
 }
 
@@ -27,8 +30,7 @@
     return [[SJHOrderedDictionary alloc] initWithObjects:objects forKeys:keys];
 }
 
-#pragma mark Initializing a Dictionary
-
+#pragma mark Initializing
 - (id)init{
     self = [super init];
     if (self){
@@ -81,7 +83,7 @@
     return self;
 }
 
-#pragma mark Adding and Removing From a Dictionary
+#pragma mark Adding and Removing
 //If aKey already exists in the dictionary anObject takes its place.
 - (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey{
     if (![_dictionary objectForKey:aKey])
@@ -110,21 +112,51 @@
     [_keys removeObject:aKey];
 }
 
+- (void)removeObjectAtIndex:(NSUInteger)index{
+    id key = [_keys objectAtIndex:index];
+    [_keys removeObjectAtIndex:index];
+    [_dictionary removeObjectForKey:key];
+}
+
 - (void)removeAllObjects{
     [_keys removeAllObjects];
     [_dictionary removeAllObjects];
 }
 
 #pragma mark Count
-
 - (NSUInteger)count{
     return [_dictionary count];
 }
 
 #pragma mark Accessing Keys and Values
-
 - (id)objectForKey:(id)aKey{
     return [_dictionary objectForKey:aKey];
+}
+
+- (id)keyForObject:(id)anObject{
+    
+    __block id searchKey;
+    
+    [_dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        if ([anObject isEqual:obj]) {
+            searchKey = key;
+            *stop = YES;
+        }
+    }];
+    
+    return searchKey;
+}
+
+- (id)keyForObjectAtIndex:(NSUInteger)index{
+    return [_keys objectAtIndex:index];
+}
+
+- (NSUInteger)indexOfObject:(id)object{
+    return [_keys indexOfObject:[self keyForObject:object]];
+}
+
+- (NSUInteger)indexOfObjectWithKey:(id)aKey{
+    return [_keys indexOfObject:aKey];
 }
 
 - (NSArray *)allKeys{
@@ -135,8 +167,7 @@
     return [_dictionary allValues];
 }
 
-#pragma mark Enumerating Dictionaries
-
+#pragma mark Enumerating
 - (NSEnumerator *)keyEnumerator{
     return [_keys objectEnumerator];
 }
@@ -145,7 +176,15 @@
     return [_keys reverseObjectEnumerator];
 }
 
-#pragma mark Copying Dictionaries
+- (void)enumerateKeysAndObjectsUsingBlock:(void (^)(id key, id obj, BOOL *stop))block{
+    [_keys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        block(obj, [_dictionary objectForKey:obj], stop);
+    }];
+}
+
+#pragma mark Copying
+//Normally copy returns an immutable copy, but, as there is no immutable
+//SJHOrderedDictionary, it merely returns a mutable copy
 - (id)copy{
     return [self mutableCopy];
 }
