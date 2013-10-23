@@ -68,6 +68,20 @@
     [_dictionary setObject:anObject forKey:aKey];
 }
 
+- (void)setObject:(id)anObject forKey:(id<NSCopying>)aKey afterKey:(id<NSCopying>)searchKey{
+    
+    NSInteger index = [_keys indexOfObject:searchKey];
+    [_keys insertObject:aKey atIndex:++index];
+    [_dictionary setObject:anObject forKey:aKey];
+}
+
+- (void)setObject:(id)anObject forKey:(id<NSCopying>)aKey beforeKey:(id<NSCopying>)searchKey{
+    
+    NSInteger index = [_keys indexOfObject:searchKey];
+    [_keys insertObject:aKey atIndex:index];
+    [_dictionary setObject:anObject forKey:aKey];
+}
+
 - (void)removeObjectForKey:(id)aKey{
     [_dictionary removeObjectForKey:aKey];
     [_keys removeObject:aKey];
@@ -83,6 +97,10 @@
 
 - (NSEnumerator *)keyEnumerator{
     return [_keys objectEnumerator];
+}
+
+- (NSEnumerator *)reverseKeyEnumerator{
+    return [_keys reverseObjectEnumerator];
 }
 
 - (NSArray *)allKeys{
