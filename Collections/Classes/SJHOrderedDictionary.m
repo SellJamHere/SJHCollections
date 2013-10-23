@@ -17,9 +17,12 @@
 
 @implementation SJHOrderedDictionary
 
+#pragma mark Creating a Dictionary
 + (id)mutableOrderedDictionaryWithObjects:(NSArray *)objects andKeys:(NSArray *)keys{
     return [[SJHOrderedDictionary alloc] initWithObjects:objects forKeys:keys];
 }
+
+#pragma mark Initializing a Dictionary
 
 - (id)init{
     self = [super init];
@@ -62,6 +65,18 @@
     return self;
 }
 
+- (id)initWithOrderedDictionary:(SJHOrderedDictionary *)orderedDictionary{
+    
+    self = [super init];
+    
+    if (self){
+        _keys = [orderedDictionary.keys mutableCopy];
+        _dictionary = [orderedDictionary.dictionary mutableCopy];
+    }
+    return self;
+}
+
+#pragma mark Adding and Removing From a Dictionary
 //If aKey already exists in the dictionary anObject takes its place.
 - (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey{
     if (![_dictionary objectForKey:aKey])
@@ -90,13 +105,27 @@
     [_keys removeObject:aKey];
 }
 
+#pragma mark Count
+
 - (NSUInteger)count{
     return [_dictionary count];
 }
 
+#pragma mark Accessing Keys and Values
+
 - (id)objectForKey:(id)aKey{
     return [_dictionary objectForKey:aKey];
 }
+
+- (NSArray *)allKeys{
+    return [_keys copy];
+}
+
+- (NSArray *)allValues{
+    return [_dictionary allValues];
+}
+
+#pragma mark Enumerating Dictionaries
 
 - (NSEnumerator *)keyEnumerator{
     return [_keys objectEnumerator];
@@ -106,10 +135,7 @@
     return [_keys reverseObjectEnumerator];
 }
 
-- (NSArray *)allKeys{
-    return _keys;
-}
-
+#pragma mark Copying Dictionaries
 - (id)copy{
     return [self mutableCopy];
 }
