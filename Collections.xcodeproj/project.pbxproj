@@ -16,8 +16,7 @@
 		8224F84417E9B068006B9EBE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8224F84317E9B068006B9EBE /* SenTestingKit.framework */; };
 		8224F84517E9B068006B9EBE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8224F82517E9B067006B9EBE /* Cocoa.framework */; };
 		8224F84D17E9B068006B9EBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8224F84B17E9B068006B9EBE /* InfoPlist.strings */; };
-		8224F85E17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */; };
-		8224F85F17E9B103006B9EBE /* SJHMutableOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */; };
+		8224F85F17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85C17E9B103006B9EBE /* SJHOrderedDictionary.m */; };
 		823B5AC917FC853400292186 /* SJHOrderedDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */; };
 		82974DB5181313D3007422E4 /* SJHQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 82974DB4181313D3007422E4 /* SJHQueue.m */; };
 		82AAB543181324E4004DADF1 /* SJHQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AAB542181324E4004DADF1 /* SJHQueueTests.m */; };
@@ -54,10 +53,8 @@
 		8224F84A17E9B068006B9EBE /* CollectionsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollectionsTests-Info.plist"; sourceTree = "<group>"; };
 		8224F84C17E9B068006B9EBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8224F84E17E9B068006B9EBE /* CollectionsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionsTests.h; sourceTree = "<group>"; };
-		8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHOrderedDictionary.m; path = Classes/SJHOrderedDictionary.m; sourceTree = "<group>"; };
-		8224F85B17E9B103006B9EBE /* SJHOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHOrderedDictionary.h; path = Classes/SJHOrderedDictionary.h; sourceTree = "<group>"; };
-		8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHMutableOrderedDictionary.m; path = Classes/SJHMutableOrderedDictionary.m; sourceTree = "<group>"; };
-		8224F85D17E9B103006B9EBE /* SJHMutableOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHMutableOrderedDictionary.h; path = Classes/SJHMutableOrderedDictionary.h; sourceTree = "<group>"; };
+		8224F85C17E9B103006B9EBE /* SJHOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHOrderedDictionary.m; path = Classes/SJHOrderedDictionary.m; sourceTree = "<group>"; };
+		8224F85D17E9B103006B9EBE /* SJHOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHOrderedDictionary.h; path = Classes/SJHOrderedDictionary.h; sourceTree = "<group>"; };
 		823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHOrderedDictionaryTests.m; sourceTree = "<group>"; };
 		82974DB3181313D3007422E4 /* SJHQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHQueue.h; path = Classes/SJHQueue.h; sourceTree = "<group>"; };
 		82974DB4181313D3007422E4 /* SJHQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHQueue.m; path = Classes/SJHQueue.m; sourceTree = "<group>"; };
@@ -202,10 +199,8 @@
 		82D1E67417F3B436009A2C19 /* OrderedDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				8224F85B17E9B103006B9EBE /* SJHOrderedDictionary.h */,
-				8224F85A17E9B103006B9EBE /* SJHOrderedDictionary.m */,
-				8224F85D17E9B103006B9EBE /* SJHMutableOrderedDictionary.h */,
-				8224F85C17E9B103006B9EBE /* SJHMutableOrderedDictionary.m */,
+				8224F85D17E9B103006B9EBE /* SJHOrderedDictionary.h */,
+				8224F85C17E9B103006B9EBE /* SJHOrderedDictionary.m */,
 			);
 			name = OrderedDictionary;
 			sourceTree = "<group>";
@@ -331,8 +326,7 @@
 				8224F83217E9B067006B9EBE /* main.m in Sources */,
 				8224F83917E9B067006B9EBE /* SJHAppDelegate.m in Sources */,
 				82D1E67B17F3B6E5009A2C19 /* SJHStack.m in Sources */,
-				8224F85E17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */,
-				8224F85F17E9B103006B9EBE /* SJHMutableOrderedDictionary.m in Sources */,
+				8224F85F17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */,
 				82974DB5181313D3007422E4 /* SJHQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
