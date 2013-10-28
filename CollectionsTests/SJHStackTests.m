@@ -16,8 +16,6 @@
 
 @property (strong, nonatomic) NSMutableArray *testValues;
 
-//reverseTestValues is needed because stack pushes and pops to rear
-@property (strong, nonatomic) NSMutableArray *reverseTestValues;
 @end
 
 @implementation SJHStackTests
@@ -27,14 +25,9 @@
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
     _testValues = [[NSMutableArray alloc] initWithCapacity:kTestSize];
-    _reverseTestValues = [[NSMutableArray alloc] initWithCapacity:kTestSize];
     
     for (NSInteger i = 0; i < kTestSize; i++) {
         [_testValues addObject:[NSNumber numberWithInteger:i]];
-    }
-    
-    for (id value in [_testValues reverseObjectEnumerator]) {
-        [_reverseTestValues addObject:value];
     }
     
 }
