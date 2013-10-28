@@ -16,6 +16,14 @@ An in-code implementation requres declaring an NSArray* to store keys in order, 
 		//Do Something
 	}
 
+Both isEqual: and isEqualToDictionary: can be used for equality. It should be noted that order is important when comparing an NSDictionary to a SJHOrderedDictionary, in that the NSDictionary must be the object from which isEqual: is called.
+
+	NSDictionary *dictionary = ...;
+	SJHOrderedDictionary *orderedDictionary = ...;
+
+	[dictionary isEqualTo: orderedDictionary];  //returns YES
+	[orderedDictionary isEqualTo: dictionary];  //returns NO
+
 
 ## SJHStack
 
@@ -51,7 +59,25 @@ The CollectionsTests.h header file contains kTestSize, used to determine the num
 
 ## SJHOrderedDictionaryTests
 
-Tests both SJHOrderedDictionary and SJHMutableOrderedDictionary.
+Tests SJHOrderedDictionary.
+TODO: Implement the following tests:
+* setObject:forKey:afterKey
+* setObject:forKey:beforeKey
+* removeObjectForKey
+* removeObjectAtIndex
+* keyForObject
+* keyForObjectAtIndex
+* indexOfObject
+* indexOfObjectWithKey
+* allKeys
+* allValues
+* keyEnumerator
+* reverseKeyEnumerator
+* enumerateKeysAndObjectsUsingBlock
+* isEqual
+* isEqualToDictionary
+* copy
+* mutableCopy
 
 ## SJHStackTests
 

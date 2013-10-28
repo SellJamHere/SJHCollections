@@ -14,6 +14,9 @@
 
 @interface SJHOrderedDictionaryTests : SenTestCase
 
+@property (strong, nonatomic) NSMutableArray *testKeys;
+@property (strong, nonatomic) NSMutableArray *testValues;
+
 @end
 
 @implementation SJHOrderedDictionaryTests
@@ -22,6 +25,13 @@
 {
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
+    _testKeys = [[NSMutableArray alloc] initWithCapacity:kTestSize];
+    _testValues = [[NSMutableArray alloc] initWithCapacity:kTestSize];
+    
+    for (NSInteger i = 0; i < kTestSize; i++) {
+        [_testKeys addObject:[NSNumber numberWithInteger:i]];
+        [_testValues addObject:[[NSNumber numberWithInteger:i] stringValue]];
+    }
 }
 
 - (void)tearDown
@@ -30,35 +40,52 @@
     [super tearDown];
 }
 
-- (void)test_mutable_ordered_dictionary_initWithCapacity{
+- (void)test_dictionary{
+    STAssertTrue([[SJHOrderedDictionary dictionary] isKindOfClass:[SJHOrderedDictionary class]], @"Ordered Dictionary is not of proper class");
+}
+
+- (void)test_dictionaryWithCapacity{
+    STAssertTrue([[SJHOrderedDictionary dictionaryWithCapacity:kTestSize] isKindOfClass:[SJHOrderedDictionary class]], @"Ordered Dictionary is not of proper class");
+}
+
+- (void)test_dictionaryWithObjects{
+    
+    SJHOrderedDictionary *mutableOrderedDictionary = [SJHOrderedDictionary dictionaryWithObjects:_testValues forKeys:_testKeys];
+    
+    NSInteger index = 0;
+    for (id key in mutableOrderedDictionary) {
+        NSString *value = [mutableOrderedDictionary objectForKey:key];
+        STAssertTrue([value isEqualToString: [@(index) stringValue]], [NSString stringWithFormat:@"Value is expected to be %@, instead it is %@", [@(index) stringValue], value]);
+        index++;
+    }
+}
+
+- (void)test_initWithCapacity{
     //Capacity change doesn't actually cause test to fail
-    STAssertTrue([[[SJHOrderedDictionary alloc] initWithCapacity:5] isEqualToDictionary:[[NSMutableDictionary alloc] initWithCapacity:5]], @"Dictionary does not equal");
+    STAssertTrue([[[SJHOrderedDictionary alloc] initWithCapacity:5] isKindOfClass:[SJHOrderedDictionary class]], @"Dictionary does not equal");
 }
 
-- (void)test_mutable_ordered_dictionary_initWithObjects{
-    NSArray *testKeys = @[@0, @1, @2, @3];
-    NSArray *testValues = @[@"Zero", @"One", @"Two", @"Three"];
+- (void)test_initWithObjects{
     
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:testValues forKeys:testKeys];
+    SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithObjects:_testValues forKeys:_testKeys];
     
-    SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithObjects:testValues forKeys:testKeys];
-    
-    STAssertTrue([mutableOrderedDictionary isEqualToDictionary:dictionary], @"Dictionary does not equal");
+    NSInteger index = 0;
+    for (id key in mutableOrderedDictionary) {
+        NSString *value = [mutableOrderedDictionary objectForKey:key];
+        STAssertTrue([value isEqualToString: [@(index) stringValue]], [NSString stringWithFormat:@"Value is expected to be %@, instead it is %@", [@(index) stringValue], value]);
+        index++;
+    }
 }
 
-- (void)test_mutable_ordered_dictionary_dictionaryWithObjects{
+- (void)test_initWithOrderedDictionary{
+    SJHOrderedDictionary *orderedDictionary = [[SJHOrderedDictionary alloc] initWithObjects:_testValues forKeys:_testKeys];
     
-    NSArray *testKeys = @[@0, @1, @2, @3];
-    NSArray *testValues = @[@"Zero", @"One", @"Two", @"Three"];
+    SJHOrderedDictionary *otherOrderedDictionary = [[SJHOrderedDictionary alloc] initWithOrderedDictionary:orderedDictionary];
     
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:testValues forKeys:testKeys];
-    
-    SJHOrderedDictionary *mutableOrderedDictionary = [SJHOrderedDictionary dictionaryWithObjects:testValues forKeys:testKeys];
-    
-    STAssertTrue([mutableOrderedDictionary isEqualToDictionary:dictionary], @"Dictionary does not equal");
+    STAssertTrue([orderedDictionary isEqual: otherOrderedDictionary], @"otherOrderedDictionary does not equal orderedDictionary");
 }
 
-- (void)test_mutable_ordered_dictionary_count{
+- (void)test_count{
     SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithObjects:@[@"Zero"] forKeys:@[@0]];
     
     STAssertTrue([mutableOrderedDictionary count] == 1, @"Expected 1, Received %d", [mutableOrderedDictionary count]);
@@ -76,21 +103,19 @@
     STAssertTrue([mutableOrderedDictionary count] == 4, @"Expected 4, Received %d", [mutableOrderedDictionary count]);
 }
 
-- (void)test_mutable_ordered_dictionary_objectAtIndex{
-    NSArray *testKeys = @[@0, @1, @2, @3];
-    NSArray *testValues = @[@"Zero", @"One", @"Two", @"Three"];
+- (void)test_objectAtIndex{
     
-    SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithObjects:testValues forKeys:testKeys];
+    SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithObjects:_testValues forKeys:_testKeys];
     
     NSInteger index = 0;
     for (id key in mutableOrderedDictionary) {
         
-        STAssertTrue([[mutableOrderedDictionary objectForKey:key] isEqual:testValues[index]], [NSString stringWithFormat:@"Expected %@, recieved %@", testValues[index], [mutableOrderedDictionary objectForKey:key]]);
+        STAssertTrue([[mutableOrderedDictionary objectForKey:key] isEqual:_testValues[index]], [NSString stringWithFormat:@"Expected %@, recieved %@", _testValues[index], [mutableOrderedDictionary objectForKey:key]]);
         index++;
     }
 }
 
-- (void)test_mutable_ordered_dictionary_setObject{
+- (void)test_setObject{
     
     SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithCapacity:10];
     
@@ -100,7 +125,7 @@
     }
 }
 
-- (void)test_mutable_ordered_dictionary_removeObject{
+- (void)test_removeObject{
     SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithCapacity:10];
     
     for (NSInteger i = 0; i < 10; i++) {
@@ -114,7 +139,7 @@
     }
 }
 
-- (void)test_mutable_ordered_dictionary_removeAll{
+- (void)test_removeAll{
     SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithCapacity:10];
     
     NSInteger i;

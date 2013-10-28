@@ -182,6 +182,28 @@
     }];
 }
 
+#pragma mark Equality
+- (BOOL)isEqual:(id)object{
+    if (object == self){
+        return YES;
+    }
+    
+    //There is only one instance of each class, hence == is acceptable
+    if([object class] == [self class]){
+        SJHOrderedDictionary *orderedDictionary = object;
+        return [_keys isEqualToArray:orderedDictionary.keys] && [_dictionary isEqualToDictionary:orderedDictionary.dictionary];
+    }
+    
+    return NO;
+}
+
+//Requires otherDictionary to be an orderedDictionary
+//Note: Comparing [orderedDictionary isEqualToDictionary dictionary] (returns NO) is not
+//the same as comparing [dictionary isEqualToDictionary orderedDictionary] (returns YES)
+- (BOOL)isEqualToDictionary:(NSDictionary *)otherDictionary{
+    return [self isEqual:otherDictionary];
+}
+
 #pragma mark Copying
 //Normally copy returns an immutable copy, but, as there is no immutable
 //SJHOrderedDictionary, it merely returns a mutable copy
