@@ -58,16 +58,16 @@
     
     self = [super init];
     if (self){
-        NSMutableArray *tempKeys = [[NSMutableArray alloc] initWithCapacity:[keys count]];
-        NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] initWithCapacity:[objects count]];
+//        NSMutableArray *tempKeys = [[NSMutableArray alloc] initWithCapacity:[keys count]];
+//        NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] initWithCapacity:[objects count]];
+//        
+//        for (int i = 0; i < [keys count]; i++) {
+//            [tempKeys addObject:keys[i]];
+//            [tempDict setObject:objects[i] forKey:keys[i]];
+//        }
         
-        for (int i = 0; i < [keys count]; i++) {
-            [tempKeys addObject:keys[i]];
-            [tempDict setObject:objects[i] forKey:keys[i]];
-        }
-        
-        _keys = [tempKeys copy];
-        _dictionary = [tempDict copy];
+        _keys = [keys mutableCopy];
+        _dictionary = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:_keys];
     }
     return self;
 }
@@ -84,12 +84,10 @@
 }
 
 #pragma mark Adding and Removing
-//If aKey already exists in the dictionary anObject takes its place.
+//Duplicate keys are allowed, stored in order. Duplicate keys reference the same value in _dictionary
 - (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey{
-    if (![_dictionary objectForKey:aKey])
-    {
-        [_keys addObject:aKey];
-    }
+
+    [_keys addObject:aKey];
     [_dictionary setObject:anObject forKey:aKey];
 }
 
@@ -157,6 +155,10 @@
 
 - (NSUInteger)indexOfObjectWithKey:(id)aKey{
     return [_keys indexOfObject:aKey];
+}
+
+- (id)objectAtIndex:(NSInteger)index{
+    return [_dictionary objectForKey:[_keys objectAtIndex:index]];
 }
 
 - (NSArray *)allKeys{

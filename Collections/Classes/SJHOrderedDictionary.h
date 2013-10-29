@@ -24,6 +24,7 @@
 - (id)keyForObjectAtIndex:(NSUInteger)index;
 - (NSUInteger)indexOfObject:(id)object;
 - (NSUInteger)indexOfObjectWithKey:(id)key;
+- (id)objectAtIndex:(NSInteger)index;
 
 //Enumerating
 - (NSEnumerator *)reverseKeyEnumerator;

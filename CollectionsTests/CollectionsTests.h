@@ -8,4 +8,4 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#define kTestSize 10
+#define kTestSize 1000

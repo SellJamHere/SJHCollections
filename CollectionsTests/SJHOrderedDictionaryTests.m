@@ -50,7 +50,7 @@
 
 - (void)test_dictionaryWithObjects{
     
-    SJHOrderedDictionary *mutableOrderedDictionary = [SJHOrderedDictionary dictionaryWithObjects:_testValues forKeys:_testKeys];
+    SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc]initWithObjects:_testValues forKeys:_testKeys];
     
     NSInteger index = 0;
     for (id key in mutableOrderedDictionary) {
@@ -110,30 +110,130 @@
     NSInteger index = 0;
     for (id key in mutableOrderedDictionary) {
         
-        STAssertTrue([[mutableOrderedDictionary objectForKey:key] isEqual:_testValues[index]], [NSString stringWithFormat:@"Expected %@, recieved %@", _testValues[index], [mutableOrderedDictionary objectForKey:key]]);
+        STAssertTrue([[mutableOrderedDictionary objectForKey:key] isEqual:_testValues[index]], @"Expected %@, received %@", _testValues[index], [mutableOrderedDictionary objectForKey:key]);
         index++;
     }
 }
 
 - (void)test_setObject{
     
-    SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithCapacity:10];
+    SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithCapacity:kTestSize];
     
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < kTestSize; i++) {
         [mutableOrderedDictionary setObject:[@(i) stringValue] forKey:@(i)];
         STAssertTrue([[mutableOrderedDictionary objectForKey:@(i)] isEqual:[@(i) stringValue]], @"Object not found");
     }
+    for (NSInteger i = 0; i < kTestSize; i++) {
+        [mutableOrderedDictionary setObject:[@(i) stringValue] forKey:@(i)];
+        STAssertTrue([[mutableOrderedDictionary objectForKey:@(i)] isEqual:[@(i) stringValue]], @"Object not found");
+    }
+    
+    NSInteger i = 0;
+    for (id key in mutableOrderedDictionary) {
+        NSInteger index = i < kTestSize ? i : i - kTestSize;
+        NSString *value = [mutableOrderedDictionary objectForKey:key];
+        STAssertTrue([value isEqual: [@(index) stringValue]], @"Value: %@, index: %ld", value, index);
+        i++;
+    }
+}
+
+- (void)test_setObjectForKeyAfterKey{
+    SJHOrderedDictionary *orderedDictionary = [SJHOrderedDictionary dictionaryWithObjects:_testValues forKeys:_testKeys];
+
+    NSString *object = @"Object";
+    NSString *key = @"Key";
+    
+    //Test front
+    NSInteger index = 0;
+    NSNumber *frontKey = @([[orderedDictionary objectAtIndex:index] integerValue]);
+    NSNumber *rearKey = @([[orderedDictionary objectAtIndex:index + 1] integerValue]);
+    
+    [orderedDictionary setObject:object forKey:key afterKey:frontKey];
+    
+    STAssertTrue([[orderedDictionary objectForKey:key] isEqualTo:object], @"key: %@ does not reference object %@", key, object);
+    STAssertTrue([[orderedDictionary objectForKey:frontKey] isEqualTo: [@(index) stringValue]], @"Expected %@ received %@", [@(index) stringValue], [orderedDictionary objectAtIndex:index]);
+    STAssertTrue([[orderedDictionary objectForKey:rearKey] isEqualTo: [@(index + 1) stringValue]], @"Expected %@ received %@", [@(index + 1) stringValue], [orderedDictionary objectForKey:rearKey]);
+    
+    [orderedDictionary removeObjectForKey:key];
+    
+    //Test middle
+    index = arc4random_uniform((uint)kTestSize - 3);
+    index++;
+    frontKey = @([[orderedDictionary objectAtIndex:index] integerValue]);
+    rearKey = @([[orderedDictionary objectAtIndex:index + 1] integerValue]);
+    
+    [orderedDictionary setObject:object forKey:key afterKey:frontKey];
+    
+    STAssertTrue([[orderedDictionary objectForKey:key] isEqualTo:object], @"key: %@ does not reference object %@", key, object);
+    STAssertTrue([[orderedDictionary objectForKey:frontKey] isEqualTo: [@(index) stringValue]], @"Expected %@ received %@", [@(index) stringValue], [orderedDictionary objectAtIndex:index]);
+    STAssertTrue([[orderedDictionary objectForKey:rearKey] isEqualTo: [@(index + 1) stringValue]], @"Expected %@ received %@", [@(index + 1) stringValue], [orderedDictionary objectForKey:rearKey]);
+    
+    [orderedDictionary removeObjectForKey:key];
+    
+    //Test rear
+    index = [orderedDictionary count] - 1;
+    frontKey = @([[orderedDictionary objectAtIndex:index] integerValue]);
+    
+    [orderedDictionary setObject:object forKey:key afterKey:frontKey];
+    
+    STAssertTrue([[orderedDictionary objectForKey:key] isEqualTo:object], @"key: %@ does not reference object %@", key, object);
+    STAssertTrue([[orderedDictionary objectForKey:frontKey] isEqualTo: [@(index) stringValue]], @"Expected %@ received %@", [@(index) stringValue], [orderedDictionary objectAtIndex:index]);
+    
+    [orderedDictionary removeObjectForKey:key];
+}
+
+- (void)test_setObjectForKeyBeforeKey{
+    SJHOrderedDictionary *orderedDictionary = [SJHOrderedDictionary dictionaryWithObjects:_testValues forKeys:_testKeys];
+    
+    NSString *object = @"Object";
+    NSString *key = @"Key";
+    
+    //Test front
+    NSInteger index = 0;
+    NSNumber *rearKey = @([[orderedDictionary objectAtIndex:index] integerValue]);
+    
+    [orderedDictionary setObject:object forKey:key beforeKey:rearKey];
+    
+    STAssertTrue([[orderedDictionary objectForKey:key] isEqualTo:object], @"key: %@ does not reference object %@", key, object);
+    STAssertTrue([[orderedDictionary objectForKey:rearKey] isEqualTo: [@(index) stringValue]], @"Expected %@ received %@", [@(index + 1) stringValue], [orderedDictionary objectForKey:rearKey]);
+    
+    [orderedDictionary removeObjectForKey:key];
+    
+    //Test middle
+    index = arc4random_uniform((uint)kTestSize - 3);
+    index++;
+    NSNumber *frontKey = @([[orderedDictionary objectAtIndex:index] integerValue]);
+    rearKey = @([[orderedDictionary objectAtIndex:index + 1] integerValue]);
+    
+    [orderedDictionary setObject:object forKey:key beforeKey:rearKey];
+    
+    STAssertTrue([[orderedDictionary objectForKey:key] isEqualTo:object], @"key: %@ does not reference object %@", key, object);
+    STAssertTrue([[orderedDictionary objectForKey:frontKey] isEqualTo: [@(index) stringValue]], @"Expected %@ received %@", [@(index) stringValue], [orderedDictionary objectAtIndex:index]);
+    STAssertTrue([[orderedDictionary objectForKey:rearKey] isEqualTo: [@(index + 1) stringValue]], @"Expected %@ received %@", [@(index + 1) stringValue], [orderedDictionary objectForKey:rearKey]);
+    
+    [orderedDictionary removeObjectForKey:key];
+    
+    //Test rear
+    index = [orderedDictionary count] - 1;
+    frontKey = @([[orderedDictionary objectAtIndex:index] integerValue]);
+    
+    [orderedDictionary setObject:object forKey:key beforeKey:rearKey];
+    
+    STAssertTrue([[orderedDictionary objectForKey:key] isEqualTo:object], @"key: %@ does not reference object %@", key, object);
+    STAssertTrue([[orderedDictionary objectForKey:frontKey] isEqualTo: [@(index) stringValue]], @"Expected %@ received %@", [@(index) stringValue], [orderedDictionary objectAtIndex:index]);
+    
+    [orderedDictionary removeObjectForKey:key];
 }
 
 - (void)test_removeObject{
     SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithCapacity:10];
     
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < kTestSize; i++) {
         [mutableOrderedDictionary setObject:[@(i) stringValue] forKey:@(i)];
         STAssertTrue([[mutableOrderedDictionary objectForKey:@(i)] isEqual:[@(i) stringValue]], @"Object not found");
     }
     
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < kTestSize; i++) {
         [mutableOrderedDictionary removeObjectForKey:@(i)];
         STAssertNil([mutableOrderedDictionary objectForKey:@(i)], @"Object not removed");
     }
@@ -143,7 +243,7 @@
     SJHOrderedDictionary *mutableOrderedDictionary = [[SJHOrderedDictionary alloc] initWithCapacity:10];
     
     NSInteger i;
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < kTestSize; i++) {
         [mutableOrderedDictionary setObject:[@(i) stringValue] forKey:@(i)];
         STAssertTrue([[mutableOrderedDictionary objectForKey:@(i)] isEqual:[@(i) stringValue]], @"Object not found");
     }

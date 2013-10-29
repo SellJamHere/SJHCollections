@@ -60,15 +60,15 @@ The CollectionsTests.h header file contains kTestSize, used to determine the num
 ## SJHOrderedDictionaryTests
 
 Tests SJHOrderedDictionary.
+
 TODO: Implement the following tests:
-* setObject:forKey:afterKey
-* setObject:forKey:beforeKey
 * removeObjectForKey
 * removeObjectAtIndex
 * keyForObject
 * keyForObjectAtIndex
 * indexOfObject
 * indexOfObjectWithKey
+* objectAtIndex
 * allKeys
 * allValues
 * keyEnumerator
