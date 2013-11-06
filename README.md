@@ -4,7 +4,7 @@ SJHCollections is a set of high level collections subclassing NSArray and NSDict
 
 ## SJHOrderedDictionary
 
-SJHOrderedDictionary is an NSDictionary subclass. Internally, they are implemented with an NSArray storing keys in order, and an NSDictionary storing key/value pairs. Iteration is implemented using the key array, allowing for ordered traversal.
+SJHOrderedDictionary is an NSDictionary subclass. Internally, it is implemented with an NSArray storing keys in order, and an NSDictionary storing key/value pairs. Iteration is implemented using the key array, allowing for ordered traversal.
 
 An in-code implementation requres declaring an NSArray* to store keys in order, and an NSDicionary for the key value parings. The dictinary can then be traversed with
 
