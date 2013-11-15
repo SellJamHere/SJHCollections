@@ -1,5 +1,5 @@
 //
-//  SJHMutableOrderedDictionary.m
+//  SJHOrderedDictionary.m
 //  Collections
 //
 //  Created by James Heller on 9/17/13.
@@ -53,7 +53,7 @@
 - (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys{
     
     if ([objects count] != [keys count]){
-        [NSException raise:@"SJHMutableOrderedDictionary initWithObjects" format:@"objects and keys are not the same size"];
+        [NSException raise:@"SJHOrderedDictionary initWithObjects" format:@"objects and keys are not the same size"];
     }
     
     self = [super init];
@@ -111,6 +111,9 @@
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index{
+    if(index >= [self count]){
+        [NSException raise:@"SJHOrderedDictionary keyForObjectAtIndex" format:@"index out of bounds"];
+    }
     id key = [_keys objectAtIndex:index];
     [_keys removeObjectAtIndex:index];
     [_dictionary removeObjectForKey:key];
@@ -146,18 +149,26 @@
 }
 
 - (id)keyForObjectAtIndex:(NSUInteger)index{
+    if(index >= [self count]){
+        [NSException raise:@"SJHOrderedDictionary keyForObjectAtIndex" format:@"index out of bounds"];
+    }
     return [_keys objectAtIndex:index];
 }
 
 - (NSUInteger)indexOfObject:(id)object{
-    return [_keys indexOfObject:[self keyForObject:object]];
+    NSUInteger index = [_keys indexOfObject:[self keyForObject:object]];
+    return (index == NSNotFound) ? -1 : index;
 }
 
 - (NSUInteger)indexOfObjectWithKey:(id)aKey{
-    return [_keys indexOfObject:aKey];
+    NSUInteger index = [_keys indexOfObject:aKey];
+    return (index == NSNotFound) ? -1 : index;
 }
 
 - (id)objectAtIndex:(NSInteger)index{
+    if(index >= [self count]){
+        [NSException raise:@"SJHOrderedDictionary keyForObjectAtIndex" format:@"index out of bounds"];
+    }
     return [_dictionary objectForKey:[_keys objectAtIndex:index]];
 }
 
@@ -223,6 +234,26 @@
     }
     
     return copy;
+}
+
+#pragma mark Description
+- (NSString *)description{
+    NSMutableString *description = [[NSMutableString alloc] init];
+    
+    if([self count] > 0){
+        [description appendString:@"index[key|object] --- "];
+        
+        int i = 0;
+        for (id key in _keys) {
+            [description appendFormat:@"%d[%@|%@] ", i, key, [self objectForKey:key]];
+            i++;
+        }
+    }
+    else{
+        [description appendString:@"Ordered Dictionary is empty"];
+    }
+    
+    return [description copy];
 }
 
 @end

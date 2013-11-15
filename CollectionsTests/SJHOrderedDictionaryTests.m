@@ -113,6 +113,11 @@
         STAssertTrue([[mutableOrderedDictionary objectForKey:key] isEqual:_testValues[index]], @"Expected %@, received %@", _testValues[index], [mutableOrderedDictionary objectForKey:key]);
         index++;
     }
+    
+    mutableOrderedDictionary = [[SJHOrderedDictionary alloc] init];
+    [mutableOrderedDictionary setObject:@"one" forKey:@1];
+    STAssertTrue([[mutableOrderedDictionary objectAtIndex:0] isEqualToString:@"one"], @"Expected one, recieved @", [mutableOrderedDictionary objectAtIndex:0]);
+//    STAssertThrows([mutableOrderedDictionary objectAtIndex:1], @"Index out of bounds");
 }
 
 - (void)test_setObject{

@@ -8,11 +8,19 @@
 
 #import "SJHAppDelegate.h"
 
+#import "SJHOrderedDictionaryDriver.h"
+
 @implementation SJHAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    //Run Drivers Here
+    
+    SJHOrderedDictionaryDriver *driver = [[SJHOrderedDictionaryDriver alloc] init];
+    
+    [driver processCommands];
+    
+    [NSApp terminate:self];
 }
 
 @end
