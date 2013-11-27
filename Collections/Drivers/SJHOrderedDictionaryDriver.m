@@ -139,10 +139,42 @@ static NSString *preface = @"Ordered Dictionary";
             scanf("%s", object);
             printf("Index: %ld", [_orderedDictionary indexOfObject:[NSString stringWithUTF8String:object]]);
         }
-        
-        
+        else if ([menuSelection isEqualToString:@"ik"]) {
+            char key[50] = {0};
+            
+            printf("Enter key: ");
+            scanf("%s", key);
+            printf("Index: %ld", [_orderedDictionary indexOfObjectWithKey:[NSString stringWithUTF8String:key]]);
+        }
+        else if ([menuSelection isEqualToString:@"oi"]) {
+            int index;
+            
+            printf("Enter index: ");
+            scanf("%d", &index);
+            printf("Object: %s", [[_orderedDictionary objectAtIndex:index] UTF8String]);
+        }
+        else if([menuSelection isEqualToString:@"ak"]){
+            NSMutableString *keys = [[NSMutableString alloc] init];
+            
+            for (id key in [_orderedDictionary allKeys]) {
+                [keys appendFormat:@"%@ -> ", key];
+            }
+            
+            printf("Keys: %s", [[keys substringToIndex:[keys length] - 4] UTF8String]);
+        }
+        else if([menuSelection isEqualToString:@"ak"]){
+            NSMutableString *values = [[NSMutableString alloc] init];
+            
+            for (id value in [_orderedDictionary allValues]) {
+                [values appendFormat:@"%@ -> ", value];
+            }
+            
+            printf("Values: %s", [[values substringToIndex:[values length] - 4] UTF8String]);
+        }
         else if([menuSelection isEqualToString:@"d"]){
             printf("%s",[[_orderedDictionary description] UTF8String]);
+        }
+        else if([menuSelection isEqualToString:@"q"]){
         }
         else{
             printf("\nError: %s is not a valid menu selection.", [menuSelection UTF8String]);
