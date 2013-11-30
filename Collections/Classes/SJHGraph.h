@@ -14,16 +14,8 @@
 
 //Mutators
 - (void)addNode:(SJHGraphNode *)node;
-/**
- * Add an edge to this graph
- * If the edge is already in the graph, change its value to this value;
- *   otherwise, add a new edge.
- * If the origin or destination nodes are not in the graph,
- *   add them as well.
- *
- * @param edge  The edge to add to this graph.
- * @param value The value of the edge.
- */
+- (void)addNodeWithValue:(id)value;
+
 - (void)addEdge:(SJHGraphEdge *)edge;
 
 - (void)removeNode:(SJHGraphNode *)node;
@@ -37,8 +29,8 @@
 - (BOOL)hasNode:(SJHGraphNode *)node;
 - (BOOL)hasEdge:(SJHGraphEdge *)edge;
 
-- (NSUInteger)inDegree;
-- (NSUInteger)outDegree;
+- (NSUInteger)inDegree:(SJHGraphNode *)node;
+- (NSUInteger)outDegree:(SJHGraphNode *)node;
 
 - (NSSet *)allNodes;
 - (NSSet *)allEdges;

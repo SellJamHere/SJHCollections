@@ -176,7 +176,7 @@ static NSString *preface = @"Ordered Dictionary";
         }
         else if([menuSelection isEqualToString:@"q"]){
         }
-        else{
+        else if(![menuSelection isEqualToString:@"q"]){
             printf("\nError: %s is not a valid menu selection.", [menuSelection UTF8String]);
             
         }

@@ -20,5 +20,6 @@
 - (id)initWithIncomingNode:(SJHGraphNode *)incomingNode andOutgoingNode:(SJHGraphNode *)outgoingNode;
 - (id)initWithIncomingNode:(SJHGraphNode *)incomingNode OutgoingNode:(SJHGraphNode *)outgoingNode andWeight:(id)weight;
 
+- (BOOL)isEqualToGraphEdge:(SJHGraphEdge *)graphEdge;
 
 @end

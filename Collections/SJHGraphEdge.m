@@ -13,8 +13,8 @@
 @implementation SJHGraphEdge
 
 - (id)init{
-    self = [self initWithIncomingNode:nil andOutgoingNode:nil];
-    return self;
+    [[NSException exceptionWithName:@"SJHGraphEdge init exception" reason:@"SJHGraphEdge must have incoming and outgoing nodes upon init" userInfo:nil] raise];
+    return nil;
 }
 
 - (id)initWithIncomingNode:(SJHGraphNode *)incomingNode andOutgoingNode:(SJHGraphNode *)outgoingNode{
@@ -28,20 +28,33 @@
         _incomingNode = incomingNode;
         _outgoingNode = outgoingNode;
         _weight = weight;
+        
+        [_incomingNode.outgoingEdges addObject:self];
+        [_incomingNode.outgoingNodes addObject:_outgoingNode];
+        [_outgoingNode.incomingEdges addObject:self];
+        [_outgoingNode.incomingNodes addObject:_incomingNode];
     }
     return self;
 }
 
 //To edges are considered equal if they have the same incoming and outgoing nodes.
+- (BOOL)isEqualToGraphEdge:(SJHGraphEdge *)graphEdge{
+    if(!graphEdge || ![self.incomingNode isEqual:graphEdge.incomingNode] || ![self.outgoingNode isEqual:graphEdge.outgoingNode]){
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)isEqual:(id)object{
     if(self == object){
         return YES;
     }
-    if([self.incomingNode isEqual: [object incomingNode]] && [self.outgoingNode isEqual:[object outgoingNode]]){
-        return YES;
+    
+    if(![object isKindOfClass:[self class]]){
+        return NO;
     }
     
-    return NO;
+    return [self.incomingNode isEqual: [object incomingNode]] && [self.outgoingNode isEqual:[object outgoingNode]];
 }
 
 - (NSUInteger)hash{
@@ -61,6 +74,10 @@
 //    result = prime * result + self.isSelected?yesPrime:noPrime;
     
     return result;
+}
+
+- (NSString *)description{
+    return [NSString stringWithFormat:@"%@ ->(%@) %@", _incomingNode.value, _weight, _outgoingNode.value];
 }
 
 @end

@@ -21,5 +21,6 @@
 
 - (id)initWithValue:(id)value;
 
+- (BOOL)isEqualToGraphNode:(SJHGraphNode *)graphNode;
 
 @end
