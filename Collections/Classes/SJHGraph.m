@@ -61,8 +61,6 @@
         originalEdge.weight = edge.weight;
     }
     else{
-        [_edges addObject:edge];
-        
         SJHGraphNode *outgoingNode = [_nodes objectForKey: [edge.outgoingNode value]];
         SJHGraphNode *incomingNode = [_nodes objectForKey: [edge.incomingNode value]];
         
@@ -85,7 +83,13 @@
         
         [incomingNode.outgoingNodes addObject:outgoingNode];
         [incomingNode.outgoingEdges addObject:edge];
+        
+        [_edges addObject:edge];
     }
+}
+
+- (void)addEdgeWithOrigin:(id)originValue destination:(id)destinationValue weight:(id)weight{
+    [self addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[SJHGraphNode nodeWithValue:originValue] outgoingNode:[SJHGraphNode nodeWithValue:destinationValue] weight:weight]];
 }
 
 /**
@@ -120,13 +124,13 @@
  * @param edge  - the edge to remove from this graph.
  */
 - (void)removeEdge:(SJHGraphEdge *)edge{
+    //remove edge and edge.outgoingNode from edge.incomingNode
+    [edge.incomingNode.outgoingNodes removeObject:edge.outgoingNode];
+    [edge.incomingNode.outgoingEdges removeObject:edge];
+    
     //remove edge and edge.incomingNode edge.outgoingNode
     [edge.outgoingNode.incomingNodes removeObject:edge.incomingNode];
     [edge.outgoingNode.incomingEdges removeObject:edge];
-    
-    //remove edge and edge.outgoingNode from edge.incomingNode
-    [edge.incomingNode.outgoingNodes removeObject:edge.incomingNode];
-    [edge.incomingNode.outgoingEdges removeObject:edge];
     
     [_edges removeObject:edge];
 }
@@ -149,6 +153,9 @@
     return ([_nodes objectForKey:node.value] ? TRUE : FALSE);
 }
 
+/**
+ * @warning If new edge is constructed, send in copies of the nodes must be sent in
+ */
 - (BOOL)hasEdge:(SJHGraphEdge *)edge{
     return [_edges containsObject:edge];
 }
@@ -158,7 +165,7 @@
 }
 
 - (NSUInteger)outDegree:(SJHGraphNode *)node{
-    return [[[_nodes objectForKey:node.value] incomingNodes] count];
+    return [[[_nodes objectForKey:node.value] outgoingNodes] count];
 }
 
 - (NSSet *)allNodes{
@@ -167,6 +174,28 @@
 
 - (NSSet *)allEdges{
     return [_edges copy];
+}
+
+//returns a set of all the nodes in the graph that are sources of the given node via some edge
+- (NSSet *)inNodes:(SJHGraphNode *)node{
+    SJHGraphNode *internalNode = [_nodes objectForKey:node.value];
+    return [internalNode.incomingNodes copy];
+}
+
+//returns a set of all the nodes in the graph that are desinations of the given node via some edge
+- (NSSet *)outNodes:(SJHGraphNode *)node{
+    SJHGraphNode *internalNode = [_nodes objectForKey:node.value];
+    return [internalNode.outgoingNodes copy];
+}
+
+- (NSSet *)inEdges:(SJHGraphNode *)node{
+    SJHGraphNode *internalNode = [_nodes objectForKey:node.value];
+    return [internalNode.incomingEdges copy];
+}
+
+- (NSSet *)outEdges:(SJHGraphNode *)node{
+    SJHGraphNode *internalNode = [_nodes objectForKey:node.value];
+    return [internalNode.outgoingEdges copy];
 }
 
 - (NSString *)description{

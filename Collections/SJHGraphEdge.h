@@ -17,8 +17,11 @@
 @property (strong, nonatomic) id weight; //Generally NSNumber, though other types are allowed
 @property (strong, nonatomic) NSMutableDictionary *additionalInfo;
 
-- (id)initWithIncomingNode:(SJHGraphNode *)incomingNode andOutgoingNode:(SJHGraphNode *)outgoingNode;
-- (id)initWithIncomingNode:(SJHGraphNode *)incomingNode OutgoingNode:(SJHGraphNode *)outgoingNode andWeight:(id)weight;
++ (SJHGraphEdge *)edgeWithIncomingNode:(SJHGraphNode *)incomingNode outgoingNode:(SJHGraphNode *)outgoingNode;
++ (SJHGraphEdge *)edgeWithIncomingNode:(SJHGraphNode *)incomingNode outgoingNode:(SJHGraphNode *)outgoingNode weight:(id)weight;
+
+- (id)initWithIncomingNode:(SJHGraphNode *)incomingNode outgoingNode:(SJHGraphNode *)outgoingNode;
+- (id)initWithIncomingNode:(SJHGraphNode *)incomingNode outgoingNode:(SJHGraphNode *)outgoingNode weight:(id)weight;
 
 - (BOOL)isEqualToGraphEdge:(SJHGraphEdge *)graphEdge;
 

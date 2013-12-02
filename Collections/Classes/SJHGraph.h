@@ -17,6 +17,7 @@
 - (void)addNodeWithValue:(id)value;
 
 - (void)addEdge:(SJHGraphEdge *)edge;
+- (void)addEdgeWithOrigin:(id)originValue destination:(id)destinationValue weight:(id)weight;
 
 - (void)removeNode:(SJHGraphNode *)node;
 - (void)removeEdge:(SJHGraphEdge *)edge;
@@ -35,5 +36,9 @@
 - (NSSet *)allNodes;
 - (NSSet *)allEdges;
 
+- (NSSet *)inNodes:(SJHGraphNode *)node;
+- (NSSet *)outNodes:(SJHGraphNode *)node;
+- (NSSet *)inEdges:(SJHGraphNode *)node;
+- (NSSet *)outEdges:(SJHGraphNode *)node;
 
 @end

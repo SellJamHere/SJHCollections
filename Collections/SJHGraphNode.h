@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SJHGraphNode : NSObject
+@interface SJHGraphNode : NSObject <NSCopying>
 
 @property (strong, nonatomic) id value;
 
@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSMutableSet *incomingEdges;
 
 @property (strong, nonatomic) NSMutableDictionary *additionalInfo;
+
++ (SJHGraphNode *)nodeWithValue:(id)value;
 
 - (id)initWithValue:(id)value;
 

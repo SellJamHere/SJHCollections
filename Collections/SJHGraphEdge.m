@@ -17,12 +17,20 @@
     return nil;
 }
 
-- (id)initWithIncomingNode:(SJHGraphNode *)incomingNode andOutgoingNode:(SJHGraphNode *)outgoingNode{
-    self = [self initWithIncomingNode:incomingNode OutgoingNode:outgoingNode andWeight:@1];
++ (SJHGraphEdge *)edgeWithIncomingNode:(SJHGraphNode *)incomingNode outgoingNode:(SJHGraphNode *)outgoingNode{
+    return [[SJHGraphEdge alloc] initWithIncomingNode:incomingNode outgoingNode:outgoingNode];
+}
+
++ (SJHGraphEdge *)edgeWithIncomingNode:(SJHGraphNode *)incomingNode outgoingNode:(SJHGraphNode *)outgoingNode weight:(id)weight{
+    return [[SJHGraphEdge alloc] initWithIncomingNode:incomingNode outgoingNode:outgoingNode weight:weight];
+}
+
+- (id)initWithIncomingNode:(SJHGraphNode *)incomingNode outgoingNode:(SJHGraphNode *)outgoingNode{
+    self = [self initWithIncomingNode:incomingNode outgoingNode:outgoingNode weight:@1];
     return self;
 }
 
-- (id)initWithIncomingNode:(SJHGraphNode *)incomingNode OutgoingNode:(SJHGraphNode *)outgoingNode andWeight:(id)weight{
+- (id)initWithIncomingNode:(SJHGraphNode *)incomingNode outgoingNode:(SJHGraphNode *)outgoingNode weight:(id)weight{
     self = [super init];
     if(self){
         _incomingNode = incomingNode;

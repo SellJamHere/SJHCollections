@@ -78,7 +78,7 @@ static NSString *preface = @"Graph";
             printf("Enter edge value: ");
             scanf("%s", value);
             
-            SJHGraphEdge *edge = [[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:originNode]] OutgoingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:destinationNode]] andWeight: [NSNumber numberWithInteger:[[NSString stringWithUTF8String:value] integerValue]]];
+            SJHGraphEdge *edge = [[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:originNode]] outgoingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:destinationNode]] weight: [NSNumber numberWithInteger:[[NSString stringWithUTF8String:value] integerValue]]];
             
             [_graph addEdge:edge];
             
@@ -100,9 +100,31 @@ static NSString *preface = @"Graph";
             printf("Enter destination node: ");
             scanf("%s", destinationNode);
             
-            SJHGraphEdge *edge = [[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:originNode]] andOutgoingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:destinationNode]]];
+            SJHGraphEdge *edge = [[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:originNode]] outgoingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:destinationNode]]];
             
             [_graph removeEdge:edge];
+            
+        }
+        else if ([menuSelection isEqualToString:@"h"]) {
+            char node[50] = {0};
+            
+            printf("Enter node: ");
+            scanf("%s", node);
+            printf("%s", ([_graph hasNode:[[SJHGraphNode alloc] initWithValue: [NSString stringWithUTF8String:node]]] ? "TRUE" : "FALSE"));
+            
+        }
+        else if ([menuSelection isEqualToString:@"H"]) {
+            char originNode[50] = {0};
+            char destinationNode[50] = {0};
+            
+            printf("Enter origin node: ");
+            scanf("%s", originNode);
+            printf("Enter destination node: ");
+            scanf("%s", destinationNode);
+            
+            SJHGraphEdge *edge = [[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:originNode]] outgoingNode:[[SJHGraphNode alloc] initWithValue:[NSString stringWithUTF8String:destinationNode]]];
+            
+            printf("%s", ([_graph hasEdge:edge] ? "TRUE" : "FALSE"));
             
         }
 

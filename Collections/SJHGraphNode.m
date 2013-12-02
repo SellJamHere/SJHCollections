@@ -12,6 +12,10 @@
 
 @implementation SJHGraphNode
 
++ (SJHGraphNode *)nodeWithValue:(id)value{
+    return [[SJHGraphNode alloc] initWithValue:value];
+}
+
 - (id)init{
     self = [self initWithValue:nil];
     return self;
@@ -99,6 +103,17 @@
     
     return [answer copy];
 
+}
+
+#pragma mark <NSCopying>
+- (id)copyWithZone:(NSZone *)zone{
+    SJHGraphNode *copy = [[[self class] alloc] initWithValue:self.value];
+    [copy setOutgoingNodes:[self.outgoingNodes mutableCopy]];
+    [copy setIncomingNodes:[self.incomingNodes mutableCopy]];
+    [copy setOutgoingEdges:[self.outgoingEdges mutableCopy]];
+    [copy setIncomingEdges:[self.incomingEdges mutableCopy]];
+    
+    return copy;
 }
 
 @end
