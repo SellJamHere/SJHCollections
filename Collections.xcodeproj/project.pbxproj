@@ -22,11 +22,11 @@
 		82974DB5181313D3007422E4 /* SJHQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 82974DB4181313D3007422E4 /* SJHQueue.m */; };
 		82AAB543181324E4004DADF1 /* SJHQueueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AAB542181324E4004DADF1 /* SJHQueueTests.m */; };
 		82B43C1C18493AD600E40B0E /* SJHGraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B43C1B18493AD600E40B0E /* SJHGraphTest.m */; };
+		82BF9AD3184DCB15008CFB2B /* SJHGraphEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF9AD0184DCB14008CFB2B /* SJHGraphEdge.m */; };
+		82BF9AD4184DCB15008CFB2B /* SJHGraphNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BF9AD2184DCB15008CFB2B /* SJHGraphNode.m */; };
 		82CC7B041836BEF2008AE913 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F83117E9B067006B9EBE /* main.m */; };
 		82CC7B071836C0AA008AE913 /* SJHOrderedDictionaryDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CC7B061836C0AA008AE913 /* SJHOrderedDictionaryDriver.m */; };
 		82CC7B0B183A92C8008AE913 /* SJHGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CC7B0A183A92C8008AE913 /* SJHGraph.m */; };
-		82CC7B0E183A92D2008AE913 /* SJHGraphNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CC7B0D183A92D2008AE913 /* SJHGraphNode.m */; };
-		82CC7B11183A92E0008AE913 /* SJHGraphEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CC7B10183A92E0008AE913 /* SJHGraphEdge.m */; };
 		82D1E67B17F3B6E5009A2C19 /* SJHStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1E67A17F3B6E5009A2C19 /* SJHStack.m */; };
 		82D1E67D17F3BDEF009A2C19 /* SJHStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D1E67C17F3BDEF009A2C19 /* SJHStackTests.m */; };
 /* End PBXBuildFile section */
@@ -70,14 +70,14 @@
 		82974DB4181313D3007422E4 /* SJHQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHQueue.m; path = Classes/SJHQueue.m; sourceTree = "<group>"; };
 		82AAB542181324E4004DADF1 /* SJHQueueTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHQueueTests.m; sourceTree = "<group>"; };
 		82B43C1B18493AD600E40B0E /* SJHGraphTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHGraphTest.m; sourceTree = "<group>"; };
+		82BF9ACF184DCB14008CFB2B /* SJHGraphEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHGraphEdge.h; path = Classes/SJHGraphEdge.h; sourceTree = "<group>"; };
+		82BF9AD0184DCB14008CFB2B /* SJHGraphEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHGraphEdge.m; path = Classes/SJHGraphEdge.m; sourceTree = "<group>"; };
+		82BF9AD1184DCB15008CFB2B /* SJHGraphNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHGraphNode.h; path = Classes/SJHGraphNode.h; sourceTree = "<group>"; };
+		82BF9AD2184DCB15008CFB2B /* SJHGraphNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHGraphNode.m; path = Classes/SJHGraphNode.m; sourceTree = "<group>"; };
 		82CC7B051836C0AA008AE913 /* SJHOrderedDictionaryDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHOrderedDictionaryDriver.h; path = Drivers/SJHOrderedDictionaryDriver.h; sourceTree = "<group>"; };
 		82CC7B061836C0AA008AE913 /* SJHOrderedDictionaryDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHOrderedDictionaryDriver.m; path = Drivers/SJHOrderedDictionaryDriver.m; sourceTree = "<group>"; };
 		82CC7B09183A92C8008AE913 /* SJHGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHGraph.h; path = Classes/SJHGraph.h; sourceTree = "<group>"; };
 		82CC7B0A183A92C8008AE913 /* SJHGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHGraph.m; path = Classes/SJHGraph.m; sourceTree = "<group>"; };
-		82CC7B0C183A92D2008AE913 /* SJHGraphNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJHGraphNode.h; sourceTree = "<group>"; };
-		82CC7B0D183A92D2008AE913 /* SJHGraphNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHGraphNode.m; sourceTree = "<group>"; };
-		82CC7B0F183A92E0008AE913 /* SJHGraphEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJHGraphEdge.h; sourceTree = "<group>"; };
-		82CC7B10183A92E0008AE913 /* SJHGraphEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHGraphEdge.m; sourceTree = "<group>"; };
 		82D1E67917F3B6E5009A2C19 /* SJHStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHStack.h; path = Classes/SJHStack.h; sourceTree = "<group>"; };
 		82D1E67A17F3B6E5009A2C19 /* SJHStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHStack.m; path = Classes/SJHStack.m; sourceTree = "<group>"; };
 		82D1E67C17F3BDEF009A2C19 /* SJHStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJHStackTests.m; sourceTree = "<group>"; };
@@ -225,12 +225,12 @@
 		82CC7B08183A926B008AE913 /* Graph */ = {
 			isa = PBXGroup;
 			children = (
+				82BF9ACF184DCB14008CFB2B /* SJHGraphEdge.h */,
+				82BF9AD0184DCB14008CFB2B /* SJHGraphEdge.m */,
+				82BF9AD1184DCB15008CFB2B /* SJHGraphNode.h */,
+				82BF9AD2184DCB15008CFB2B /* SJHGraphNode.m */,
 				82CC7B09183A92C8008AE913 /* SJHGraph.h */,
 				82CC7B0A183A92C8008AE913 /* SJHGraph.m */,
-				82CC7B0C183A92D2008AE913 /* SJHGraphNode.h */,
-				82CC7B0D183A92D2008AE913 /* SJHGraphNode.m */,
-				82CC7B0F183A92E0008AE913 /* SJHGraphEdge.h */,
-				82CC7B10183A92E0008AE913 /* SJHGraphEdge.m */,
 			);
 			name = Graph;
 			sourceTree = "<group>";
@@ -364,12 +364,12 @@
 			files = (
 				8224F83217E9B067006B9EBE /* main.m in Sources */,
 				82CC7B071836C0AA008AE913 /* SJHOrderedDictionaryDriver.m in Sources */,
-				82CC7B11183A92E0008AE913 /* SJHGraphEdge.m in Sources */,
+				82BF9AD3184DCB15008CFB2B /* SJHGraphEdge.m in Sources */,
 				8224F83917E9B067006B9EBE /* SJHAppDelegate.m in Sources */,
 				82D1E67B17F3B6E5009A2C19 /* SJHStack.m in Sources */,
 				82CC7B0B183A92C8008AE913 /* SJHGraph.m in Sources */,
+				82BF9AD4184DCB15008CFB2B /* SJHGraphNode.m in Sources */,
 				8224F85F17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */,
-				82CC7B0E183A92D2008AE913 /* SJHGraphNode.m in Sources */,
 				8234A7C51846B4F50042370F /* SJHGraphDriver.m in Sources */,
 				82974DB5181313D3007422E4 /* SJHQueue.m in Sources */,
 			);
