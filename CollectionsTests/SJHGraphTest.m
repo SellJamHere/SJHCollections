@@ -288,8 +288,8 @@ static NSUInteger const kEdgeTestHash = 2411790121561763705;
 
     STAssertTrue(1 == [[graph outNodes:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect outNode size");
     STAssertTrue(1 == [[graph outEdges:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect outEdge size");
-    STAssertTrue(1 == [[graph inNodes:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect inNode size");
-    STAssertTrue(1 == [[graph inEdges:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect inEdge size");
+    STAssertTrue(2 == [[graph inNodes:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect inNode size");
+    STAssertTrue(2 == [[graph inEdges:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect inEdge size");
     
     STAssertTrue(0 == [[graph outNodes:[[SJHGraphNode alloc] initWithValue:@"e"]] count], @"Incorrect outNode size");
     STAssertTrue(0 == [[graph outEdges:[[SJHGraphNode alloc] initWithValue:@"e"]] count], @"Incorrect outEdge size");
@@ -331,9 +331,82 @@ static NSUInteger const kEdgeTestHash = 2411790121561763705;
     
     STAssertTrue(1 == [[graph outNodes:[[SJHGraphNode alloc] initWithValue:@"c"]] count], @"Incorrect outNode size");
     STAssertTrue(1 == [[graph outEdges:[[SJHGraphNode alloc] initWithValue:@"c"]] count], @"Incorrect outEdge size");
-    STAssertTrue(2 == [[graph inNodes:[[SJHGraphNode alloc] initWithValue:@"c"]] count], @"Incorrect inNode size");
-    STAssertTrue(2 == [[graph inEdges:[[SJHGraphNode alloc] initWithValue:@"c"]] count], @"Incorrect inEdge size");
+    STAssertTrue(1 == [[graph inNodes:[[SJHGraphNode alloc] initWithValue:@"c"]] count], @"Incorrect inNode size");
+    STAssertTrue(1 == [[graph inEdges:[[SJHGraphNode alloc] initWithValue:@"c"]] count], @"Incorrect inEdge size");
     
+    STAssertTrue(1 == [[graph outNodes:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect outNode size");
+    STAssertTrue(1 == [[graph outEdges:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect outEdge size");
+    STAssertTrue(2 == [[graph inNodes:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect inNode size");
+    STAssertTrue(2 == [[graph inEdges:[[SJHGraphNode alloc] initWithValue:@"d"]] count], @"Incorrect inEdge size");
+    
+}
+
+- (void)test_clear{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    STAssertTrue(5 == [graph nodeCount], @"Incorrect nodeCount");
+    STAssertTrue(6 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    [graph clear];
+    
+    STAssertTrue(0 == [graph nodeCount], @"Incorrect nodeCount");
+    STAssertTrue(0 == [graph edgeCount], @"Incorrect edgeCount");
+    STAssertTrue(0 == [[graph allNodes] count], @"Incorrect allNodes count");
+    STAssertTrue(0 == [[graph allEdges] count], @"Incorrect allEdges count");
+}
+
+- (void)test_nodeCount{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    STAssertTrue(5 == [graph nodeCount], @"Incorrect nodeCount");
+    
+    [graph removeNode:[SJHGraphNode nodeWithValue:@"f"]]; //not present
+    STAssertTrue(5 == [graph nodeCount], @"Incorrect nodeCount");
+    
+    [graph removeNode:[SJHGraphNode nodeWithValue:@"a"]];
+    STAssertTrue(4 == [graph nodeCount], @"Incorrect nodeCount");
+    
+    [graph removeNode:[SJHGraphNode nodeWithValue:@"b"]];
+    STAssertTrue(3 == [graph nodeCount], @"Incorrect nodeCount");
+    
+    [graph removeNode:[SJHGraphNode nodeWithValue:@"c"]];
+    STAssertTrue(2 == [graph nodeCount], @"Incorrect nodeCount");
+    
+    [graph removeNode:[SJHGraphNode nodeWithValue:@"d"]];
+    STAssertTrue(1 == [graph nodeCount], @"Incorrect nodeCount");
+    
+    [graph removeNode:[SJHGraphNode nodeWithValue:@"e"]];
+    STAssertTrue(0 == [graph nodeCount], @"Incorrect nodeCount");
+}
+
+- (void)test_edgeCount{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    STAssertTrue(5 == [graph nodeCount], @"Incorrect nodeCount");
+    STAssertTrue(6 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    [graph removeEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"d"] outgoingNode:[SJHGraphNode nodeWithValue:@"c"]]]; //not present
+    STAssertTrue(6 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    [graph removeEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"a"] outgoingNode:[SJHGraphNode nodeWithValue:@"b"]]];
+    STAssertTrue(5 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    [graph removeEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"a"] outgoingNode:[SJHGraphNode nodeWithValue:@"c"]]];
+    STAssertTrue(4 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    [graph removeEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"a"] outgoingNode:[SJHGraphNode nodeWithValue:@"d"]]];
+    STAssertTrue(3 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    [graph removeEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"b"] outgoingNode:[SJHGraphNode nodeWithValue:@"d"]]];
+    STAssertTrue(2 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    [graph removeEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"c"] outgoingNode:[SJHGraphNode nodeWithValue:@"d"]]];
+    STAssertTrue(1 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    [graph removeEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"d"] outgoingNode:[SJHGraphNode nodeWithValue:@"a"]]];
+    STAssertTrue(0 == [graph edgeCount], @"Incorrect edgeCount");
+    
+    STAssertTrue(5 == [graph nodeCount], @"Incorrect nodeCount");
 }
 
 - (void)test_hasNode{
@@ -378,6 +451,146 @@ static NSUInteger const kEdgeTestHash = 2411790121561763705;
         STAssertTrue([graph hasNode:edge.incomingNode], @"edge.incomingNode not found");
         STAssertTrue([graph hasNode:edge.outgoingNode], @"edge.outgoingNode not found");
         STAssertTrue([graph hasEdge:edge], @"Edge not found");
+    }
+}
+
+- (void)test_inDegree{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    STAssertTrue(1 == [graph inDegree:[SJHGraphNode nodeWithValue:@"a"]], @"Incorrect inDegree");
+    STAssertTrue(1 == [graph inDegree:[SJHGraphNode nodeWithValue:@"b"]], @"Incorrect inDegree");
+    STAssertTrue(1 == [graph inDegree:[SJHGraphNode nodeWithValue:@"c"]], @"Incorrect inDegree");
+    STAssertTrue(3 == [graph inDegree:[SJHGraphNode nodeWithValue:@"d"]], @"Incorrect inDegree");
+    STAssertTrue(0 == [graph inDegree:[SJHGraphNode nodeWithValue:@"e"]], @"Incorrect inDegree");
+    
+    STAssertTrue(0 == [graph inDegree:[SJHGraphNode nodeWithValue:@"f"]], @"Incorrect inDegree"); //not present
+}
+
+- (void)test_outDegree{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+
+    STAssertTrue(3 == [graph outDegree:[SJHGraphNode nodeWithValue:@"a"]], @"Incorrect inDegree");
+    STAssertTrue(1 == [graph outDegree:[SJHGraphNode nodeWithValue:@"b"]], @"Incorrect inDegree");
+    STAssertTrue(1 == [graph outDegree:[SJHGraphNode nodeWithValue:@"c"]], @"Incorrect inDegree");
+    STAssertTrue(1 == [graph outDegree:[SJHGraphNode nodeWithValue:@"d"]], @"Incorrect inDegree");
+    STAssertTrue(0 == [graph outDegree:[SJHGraphNode nodeWithValue:@"e"]], @"Incorrect inDegree");
+    
+    STAssertTrue(0 == [graph outDegree:[SJHGraphNode nodeWithValue:@"f"]], @"Incorrect inDegree"); //not present
+}
+
+- (void)test_degree{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    STAssertTrue(4 == [graph degree:[SJHGraphNode nodeWithValue:@"a"]], @"Incorrect inDegree");
+    STAssertTrue(2 == [graph degree:[SJHGraphNode nodeWithValue:@"b"]], @"Incorrect inDegree");
+    STAssertTrue(2 == [graph degree:[SJHGraphNode nodeWithValue:@"c"]], @"Incorrect inDegree");
+    STAssertTrue(4 == [graph degree:[SJHGraphNode nodeWithValue:@"d"]], @"Incorrect inDegree");
+    STAssertTrue(0 == [graph degree:[SJHGraphNode nodeWithValue:@"e"]], @"Incorrect inDegree");
+    
+    STAssertTrue(0 == [graph degree:[SJHGraphNode nodeWithValue:@"f"]], @"Incorrect inDegree"); //not present
+}
+
+- (void)test_allNodes{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    NSMutableSet *nodes = [[NSMutableSet alloc] init];
+    for (SJHGraphNode *node in [graph allNodes]) {
+        [nodes addObject:node.value];
+    }
+    
+    STAssertTrue(5 == [nodes count], @"Incorrect nodes count");
+    
+    NSSet *values = [NSSet setWithObjects:@"a", @"b", @"c", @"d", @"e", nil];
+    
+    STAssertTrue([nodes isEqualToSet: values], @"Sets should equal");
+}
+
+- (void)test_allEdges{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    NSSet *edges = [graph allEdges];
+    
+    STAssertTrue(6 == [edges count], @"edges is of wrong size");
+    
+    STAssertTrue([graph hasEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"a"] outgoingNode:[SJHGraphNode nodeWithValue:@"b"]]], @"Should contain edge");
+    STAssertTrue([graph hasEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"a"] outgoingNode:[SJHGraphNode nodeWithValue:@"c"]]], @"Should contain edge");
+    STAssertTrue([graph hasEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"a"] outgoingNode:[SJHGraphNode nodeWithValue:@"d"]]], @"Should contain edge");
+    STAssertTrue([graph hasEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"b"] outgoingNode:[SJHGraphNode nodeWithValue:@"d"]]], @"Should contain edge");
+    STAssertTrue([graph hasEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"c"] outgoingNode:[SJHGraphNode nodeWithValue:@"d"]]], @"Should contain edge");
+    STAssertTrue([graph hasEdge:[SJHGraphEdge edgeWithIncomingNode:[SJHGraphNode nodeWithValue:@"d"] outgoingNode:[SJHGraphNode nodeWithValue:@"a"]]], @"Should contain edge");
+}
+
+- (void)test_inNodes{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    NSSet *smallSet = [NSSet setWithObjects:[SJHGraphNode nodeWithValue:@"d"], nil];
+    
+    STAssertTrue([smallSet isEqual:[graph inNodes:[SJHGraphNode nodeWithValue:@"a"]]], @"Sets should be equal");
+    
+    smallSet = [NSSet setWithObjects:[SJHGraphNode nodeWithValue:@"a"], nil];
+    
+    STAssertTrue([smallSet isEqual:[graph inNodes:[SJHGraphNode nodeWithValue:@"b"]]], @"Sets should be equal");
+    
+    smallSet = [NSSet setWithObjects:[SJHGraphNode nodeWithValue:@"a"], nil];
+    
+    STAssertTrue([smallSet isEqual:[graph inNodes:[SJHGraphNode nodeWithValue:@"c"]]], @"Sets should be equal");
+    
+    smallSet = [NSSet setWithObjects:[SJHGraphNode nodeWithValue:@"a"], [SJHGraphNode nodeWithValue:@"b"], [SJHGraphNode nodeWithValue:@"c"], nil];
+    
+    STAssertTrue([smallSet isEqual:[graph inNodes:[SJHGraphNode nodeWithValue:@"d"]]], @"Sets should be equal");
+    
+    smallSet = [NSSet setWithObjects: nil];
+    
+    STAssertTrue([smallSet isEqual:[graph inNodes:[SJHGraphNode nodeWithValue:@"e"]]], @"Sets should be equal");
+}
+
+- (void)test_outNodes{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    NSSet *smallSet = [NSSet setWithObjects:[SJHGraphNode nodeWithValue:@"b"], [SJHGraphNode nodeWithValue:@"c"], [SJHGraphNode nodeWithValue:@"d"], nil];
+    
+    STAssertTrue([smallSet isEqual:[graph outNodes:[SJHGraphNode nodeWithValue:@"a"]]], @"Sets should be equal");
+    
+    smallSet = [NSSet setWithObjects:[SJHGraphNode nodeWithValue:@"d"], nil];
+    
+    STAssertTrue([smallSet isEqual:[graph outNodes:[SJHGraphNode nodeWithValue:@"b"]]], @"Sets should be equal");
+    
+    smallSet = [NSSet setWithObjects:[SJHGraphNode nodeWithValue:@"d"], nil];
+    
+    STAssertTrue([smallSet isEqual:[graph outNodes:[SJHGraphNode nodeWithValue:@"c"]]], @"Sets should be equal");
+    
+    smallSet = [NSSet setWithObjects:[SJHGraphNode nodeWithValue:@"a"], nil];
+    
+    STAssertTrue([smallSet isEqual:[graph outNodes:[SJHGraphNode nodeWithValue:@"d"]]], @"Sets should be equal");
+    
+    smallSet = [NSSet setWithObjects: nil];
+    
+    STAssertTrue([smallSet isEqual:[graph outNodes:[SJHGraphNode nodeWithValue:@"e"]]], @"Sets should be equal");
+}
+
+- (void)test_inEdges{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    for (SJHGraphNode *node in [graph allNodes]) {
+        NSMutableSet *nodes = [[NSMutableSet alloc] init];
+        for (SJHGraphEdge *edge in [graph inEdges:node]) {
+            [nodes addObject:edge.incomingNode];
+        }
+        NSSet *set = [graph inNodes:node];
+        STAssertTrue([nodes isEqual:set], @"Sets should be equal");
+    }
+}
+
+- (void)test_outEdges{
+    SJHGraph *graph = [SJHGraphTest standardGraph];
+    
+    for (SJHGraphNode *node in [graph allNodes]) {
+        NSMutableSet *nodes = [[NSMutableSet alloc] init];
+        for (SJHGraphEdge *edge in [graph outEdges:node]) {
+            [nodes addObject:edge.outgoingNode];
+        }
+        NSSet *set = [graph outNodes:node];
+        STAssertTrue([nodes isEqual:set], @"Sets should equal");
     }
 }
 

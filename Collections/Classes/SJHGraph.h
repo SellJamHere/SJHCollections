@@ -32,6 +32,7 @@
 
 - (NSUInteger)inDegree:(SJHGraphNode *)node;
 - (NSUInteger)outDegree:(SJHGraphNode *)node;
+- (NSUInteger)degree:(SJHGraphNode *)node;
 
 - (NSSet *)allNodes;
 - (NSSet *)allEdges;

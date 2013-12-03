@@ -37,7 +37,9 @@
 
 //Mutators
 - (void)addNode:(SJHGraphNode *)node{
-    [_nodes setObject:node forKey:node.value];
+    if(![_nodes objectForKey:node.value]){
+        [_nodes setObject:node forKey:node.value];
+    }
 }
 
 - (void)addNodeWithValue:(id)value{
@@ -104,11 +106,11 @@
     SJHGraphNode *internalNode = [_nodes objectForKey:node.value];
     
     if(internalNode){
-    
-        for (SJHGraphEdge *edge in internalNode.outgoingEdges){
+        //copy of outgoingEdges to prevent fast enumeration mutation errors
+        for (SJHGraphEdge *edge in [internalNode.outgoingEdges copy]){
             [self removeEdge:edge];
         }
-        for (SJHGraphEdge *edge in internalNode.incomingEdges) {
+        for (SJHGraphEdge *edge in [internalNode.incomingEdges copy]) {
             [self removeEdge:edge];
         }
         
@@ -118,19 +120,22 @@
 
 /**
  * Remove an edge from this graph
- * Update the LocalInformation for the origin/destination nodes of
- *   this edge.
+ * incomingNode and outgoingNode are taken from self.nodes, as an edge can
+ * be created with new nodes of the same value, which will prevent the proper
+ * internal nodes from being updated.
  *
  * @param edge  - the edge to remove from this graph.
  */
 - (void)removeEdge:(SJHGraphEdge *)edge{
     //remove edge and edge.outgoingNode from edge.incomingNode
-    [edge.incomingNode.outgoingNodes removeObject:edge.outgoingNode];
-    [edge.incomingNode.outgoingEdges removeObject:edge];
+    SJHGraphNode *incomingNode = [_nodes objectForKey:edge.incomingNode.value];
+    [incomingNode.outgoingNodes removeObject:edge.outgoingNode];
+    [incomingNode.outgoingEdges removeObject:edge];
     
     //remove edge and edge.incomingNode edge.outgoingNode
-    [edge.outgoingNode.incomingNodes removeObject:edge.incomingNode];
-    [edge.outgoingNode.incomingEdges removeObject:edge];
+    SJHGraphNode *outgoingNode = [_nodes objectForKey:edge.outgoingNode.value];
+    [outgoingNode.incomingNodes removeObject:edge.incomingNode];
+    [outgoingNode.incomingEdges removeObject:edge];
     
     [_edges removeObject:edge];
 }
@@ -168,10 +173,18 @@
     return [[[_nodes objectForKey:node.value] outgoingNodes] count];
 }
 
+- (NSUInteger)degree:(SJHGraphNode *)node{
+    //instantiate node to prevent multiple look ups
+    SJHGraphNode *internalNode = [_nodes objectForKey:node.value];
+    return [internalNode.incomingNodes count] + [internalNode.outgoingNodes count];
+}
+
+//returns a set constructed from the dictionary values
 - (NSSet *)allNodes{
     return [NSSet setWithArray:[_nodes allValues]];
 }
 
+//returns a copy
 - (NSSet *)allEdges{
     return [_edges copy];
 }
