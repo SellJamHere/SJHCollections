@@ -9,8 +9,6 @@
 #import "SJHGraphDriver.h"
 
 #import "SJHGraph.h"
-#import "SJHGraphEdge.h"
-#import "SJHGraphNode.h"
 
 @interface SJHGraphDriver ()
 

@@ -12,8 +12,6 @@
 #import "SJHGraphDriver.h"
 
 #import "SJHGraph.h"
-#import "SJHGraphNode.h"
-#import "SJHGraphEdge.h"
 
 @implementation SJHAppDelegate
 

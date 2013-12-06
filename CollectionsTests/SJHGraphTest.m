@@ -9,8 +9,6 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #import "SJHGraph.h"
-#import "SJHGraphNode.h"
-#import "SJHGraphEdge.h"
 
 @interface SJHGraphTest : SenTestCase
 
