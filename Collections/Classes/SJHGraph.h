@@ -34,7 +34,7 @@
 - (NSUInteger)outDegree:(SJHGraphNode *)node;
 - (NSUInteger)degree:(SJHGraphNode *)node;
 
-- (NSSet *)allNodes;
+- (NSArray *)allNodes;      
 - (NSSet *)allEdges;
 
 - (NSSet *)inNodes:(SJHGraphNode *)node;
@@ -42,9 +42,11 @@
 - (NSSet *)inEdges:(SJHGraphNode *)node;
 - (NSSet *)outEdges:(SJHGraphNode *)node;
 
+//Path finding
+- (SJHGraph *)shortestPath:(SJHGraphNode *)source;
 @end
 
-
+//Internal Node Class
 @interface SJHGraphNode : NSObject <NSCopying>
 
 @property (strong, nonatomic) id value;
@@ -64,6 +66,7 @@
 
 @end
 
+//Internal Edge Class
 @interface SJHGraphEdge : NSObject
 
 @property (strong, nonatomic, readonly) SJHGraphNode *outgoingNode;

@@ -29,18 +29,38 @@ static NSString *preface = @"Graph";
     return self;
 }
 
++ (SJHGraph *)standardGraph{
+    SJHGraph *standardGraph = [[SJHGraph alloc] init];
+    
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"S"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"a"] weight:@5]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"S"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"c"] weight:@10]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"a"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"b"] weight:@6]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"a"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"d"] weight:@20]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"b"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"c"] weight:@2]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"b"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"d"] weight:@10]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"c"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"a"] weight:@1]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"c"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"e"] weight:@1]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"d"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"e"] weight:@3]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"d"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"T"] weight:@4]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"e"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"d"] weight:@9]];
+    [standardGraph addEdge:[[SJHGraphEdge alloc] initWithIncomingNode:[[SJHGraphNode alloc] initWithValue:@"e"] outgoingNode:[[SJHGraphNode alloc] initWithValue:@"T"] weight:@8]];
+    
+    return standardGraph;
+}
+
 - (NSString *)presentMenu{
-    printf("\n\n\n%s  Mutators                      Accessors                    General\n", [preface UTF8String]);
-    printf("%s  n - addNode                       h - hasNode                  d - description\n", [preface UTF8String]);
-    printf("%s  e - addEdge                       H - hasEdge                  q - quit\n", [preface UTF8String]);
-    printf("%s  rn - removeNode                   v - edgeValue           \n", [preface UTF8String]);
-    printf("%s  re - removeEdge                   > - inDegree\n", [preface UTF8String]);
-    printf("%s  c - clear                         < - outDegree\n", [preface UTF8String]);
-    printf("%s                                    g - getAllNodes\n", [preface UTF8String]);
-    printf("%s                                    G - getAllEdges\n", [preface UTF8String]);
-    printf("%s                                    # - node/edge counts\n", [preface UTF8String]);
-    printf("%s                                    o - out information\n", [preface UTF8String]);
-    printf("%s                                    i - in information/n", [preface UTF8String]);
+    printf("\n\n\n%s  Mutators            Accessors                    General\n", [preface UTF8String]);
+    printf("%s  n - addNode             h - hasNode                  d - description\n", [preface UTF8String]);
+    printf("%s  e - addEdge             H - hasEdge                  l - load standard graph\n", [preface UTF8String]);
+    printf("%s  rn - removeNode         v - edgeValue                q - quit\n", [preface UTF8String]);
+    printf("%s  re - removeEdge         > - inDegree\n", [preface UTF8String]);
+    printf("%s  c - clear               < - outDegree\n", [preface UTF8String]);
+    printf("%s                          g - getAllNodes\n", [preface UTF8String]);
+    printf("%s                          G - getAllEdges\n", [preface UTF8String]);
+    printf("%s                          # - node/edge counts\n", [preface UTF8String]);
+    printf("%s                          o - out information\n", [preface UTF8String]);
+    printf("%s                          i - in information\n", [preface UTF8String]);
+    printf("%s                          p - shortest path\n", [preface UTF8String]);
     printf("\nEnter Command: ");
     
     char str[50] = {0};
@@ -50,7 +70,7 @@ static NSString *preface = @"Graph";
 
 - (void)processCommands{
     
-    printf("All values entered as String\n\n");
+    printf("All values entered as String\n");
     
     NSString *menuSelection;
     
@@ -124,6 +144,19 @@ static NSString *preface = @"Graph";
             
             printf("%s", ([_graph hasEdge:edge] ? "TRUE" : "FALSE"));
             
+        }
+        else if ([menuSelection isEqualToString:@"l"]) {
+            _graph = [SJHGraphDriver standardGraph];
+        }
+        else if ([menuSelection isEqualToString:@"p"]) {
+            char originNode[50] = {0};
+            
+            printf("Enter origin node: ");
+            scanf("%s", originNode);
+            
+            SJHGraph *path = [_graph shortestPath:[SJHGraphNode nodeWithValue:[NSString stringWithUTF8String:originNode]]];
+            
+            printf("%s", [[path description] UTF8String]);
         }
 
         

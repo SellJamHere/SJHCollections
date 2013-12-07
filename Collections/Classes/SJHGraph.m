@@ -8,6 +8,9 @@
 
 #import "SJHGraph.h"
 
+#import "SJHDijkstraPath.h"
+
+#pragma mark - SJHGraph
 @interface SJHGraph()
 
 /*
@@ -177,8 +180,8 @@
 }
 
 //returns a set constructed from the dictionary values
-- (NSSet *)allNodes{
-    return [NSSet setWithArray:[_nodes allValues]];
+- (NSArray *)allNodes{
+    return [_nodes allValues];
 }
 
 //returns a copy
@@ -235,8 +238,13 @@
     return [answer copy];
 }
 
+- (SJHGraph *)shortestPath:(SJHGraphNode *)source{
+    return [[[SJHDijkstraPath alloc] initWithGraph:self] pathTree:source];
+}
+
 @end
 
+#pragma mark - SJHGraphNode
 @implementation SJHGraphNode
 
 + (SJHGraphNode *)nodeWithValue:(id)value{
@@ -308,7 +316,7 @@
         return [[[obj1 outgoingNode] value] compare: [[obj2 outgoingNode] value]];
     }];
     
-    [answer appendString:@"  Out Edges:  "];
+    [answer appendFormat:@"  Out Edges:  "];
     
     for (SJHGraphEdge *edge in outEdgeList) {
         [answer appendFormat:@"%@, ", edge];
@@ -332,7 +340,6 @@
     
 }
 
-#pragma mark <NSCopying>
 - (id)copyWithZone:(NSZone *)zone{
     SJHGraphNode *copy = [[[self class] alloc] initWithValue:self.value];
     [copy setOutgoingNodes:[self.outgoingNodes mutableCopy]];
@@ -345,6 +352,8 @@
 
 @end
 
+
+#pragma mark - SJHGraphEdge
 @implementation SJHGraphEdge
 
 - (id)init{

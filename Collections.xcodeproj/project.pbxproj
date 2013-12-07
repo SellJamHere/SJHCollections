@@ -17,6 +17,7 @@
 		8224F84517E9B068006B9EBE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8224F82517E9B067006B9EBE /* Cocoa.framework */; };
 		8224F84D17E9B068006B9EBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8224F84B17E9B068006B9EBE /* InfoPlist.strings */; };
 		8224F85F17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 8224F85C17E9B103006B9EBE /* SJHOrderedDictionary.m */; };
+		8233DD8E18526BBB008BDB5A /* SJHDijkstraPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 8233DD8D18526BBB008BDB5A /* SJHDijkstraPath.m */; };
 		8234A7C51846B4F50042370F /* SJHGraphDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8234A7C41846B4F50042370F /* SJHGraphDriver.m */; };
 		823B5AC917FC853400292186 /* SJHOrderedDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 823B5AC817FC853400292186 /* SJHOrderedDictionaryTests.m */; };
 		82974DB5181313D3007422E4 /* SJHQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 82974DB4181313D3007422E4 /* SJHQueue.m */; };
@@ -60,6 +61,8 @@
 		8224F84E17E9B068006B9EBE /* CollectionsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionsTests.h; sourceTree = "<group>"; };
 		8224F85C17E9B103006B9EBE /* SJHOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHOrderedDictionary.m; path = Classes/SJHOrderedDictionary.m; sourceTree = "<group>"; };
 		8224F85D17E9B103006B9EBE /* SJHOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHOrderedDictionary.h; path = Classes/SJHOrderedDictionary.h; sourceTree = "<group>"; };
+		8233DD8C18526BBB008BDB5A /* SJHDijkstraPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHDijkstraPath.h; path = Classes/SJHDijkstraPath.h; sourceTree = "<group>"; };
+		8233DD8D18526BBB008BDB5A /* SJHDijkstraPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHDijkstraPath.m; path = Classes/SJHDijkstraPath.m; sourceTree = "<group>"; };
 		8234A7C31846B4F50042370F /* SJHGraphDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHGraphDriver.h; path = Drivers/SJHGraphDriver.h; sourceTree = "<group>"; };
 		8234A7C41846B4F50042370F /* SJHGraphDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJHGraphDriver.m; path = Drivers/SJHGraphDriver.m; sourceTree = "<group>"; };
 		8234A7C61846B5190042370F /* SJHDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJHDriver.h; path = Drivers/SJHDriver.h; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 			children = (
 				82CC7B09183A92C8008AE913 /* SJHGraph.h */,
 				82CC7B0A183A92C8008AE913 /* SJHGraph.m */,
+				8233DD8C18526BBB008BDB5A /* SJHDijkstraPath.h */,
+				8233DD8D18526BBB008BDB5A /* SJHDijkstraPath.m */,
 			);
 			name = Graph;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				82CC7B0B183A92C8008AE913 /* SJHGraph.m in Sources */,
 				8224F85F17E9B103006B9EBE /* SJHOrderedDictionary.m in Sources */,
 				8234A7C51846B4F50042370F /* SJHGraphDriver.m in Sources */,
+				8233DD8E18526BBB008BDB5A /* SJHDijkstraPath.m in Sources */,
 				82974DB5181313D3007422E4 /* SJHQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
