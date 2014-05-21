@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/selljamhere/sjhcollections.png?label=ready&title=Ready)](https://waffle.io/selljamhere/sjhcollections)
 # SJHCollections
 
 SJHCollections is a set of high level collections subclassing NSArray and NSDictionary. These classes aren't absolutely necessary, as they can be implemented in-code. However, I've found these classes reduce complexity in most pre-optimization cases.
